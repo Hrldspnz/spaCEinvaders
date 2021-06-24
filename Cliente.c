@@ -28,7 +28,7 @@ int main ()
 	int Socket_Con_Servidor;
    int Longitud_Cadena = 0;
    int Aux;
-	char Cadena[100];
+	char Cadena[100000];
 
     Socket_Con_Servidor = Abre_Conexion_Inet ();
 
@@ -41,24 +41,24 @@ int main ()
 
     Lee_Socket (Socket_Con_Servidor, (char *)&Aux, sizeof(int));
    Longitud_Cadena = ntohl (Aux);
-   printf ("Cliente C: Recibido %d\n", Longitud_Cadena-1);
 
    /* Se lee la cadena de la longitud indicada */
    Lee_Socket (Socket_Con_Servidor, Cadena, Longitud_Cadena);
    printf ("Cliente C: Recibido %s\n", Cadena);
+
+	escribirTXT(Cadena);
    
 	/*
     * Se va a enviar una cadena de 6 caracteres, incluido el \0. Previamente se
     * envia un entero con el 6.
 	*/
-	strcpy (Cadena, "Adios");
-   Longitud_Cadena = 6;
+	strcpy (Cadena, leerTXT());
+   Longitud_Cadena = 10000;
 
    /* Antes de enviar el entero hay que transformalo a formato red */
    Aux = htonl (Longitud_Cadena);
    
    Escribe_Socket (Socket_Con_Servidor, (char *)&Aux, sizeof(Longitud_Cadena));
-   printf ("Cliente C: Enviado %d\n", Longitud_Cadena-1);
 
    /* Se env�a la cadena */
 	Escribe_Socket (Socket_Con_Servidor, Cadena, Longitud_Cadena);
@@ -69,7 +69,6 @@ int main ()
 	*/
 	close (Socket_Con_Servidor);
 	}
-	printf("%s",leerTXT());
 
 
 }
@@ -234,7 +233,7 @@ char * leerTXT(){
 	static char data[10000];
 	int i= 0;
 	
-	archivo = fopen("DatoR.txt","r");
+	archivo = fopen("DatoE.txt","r");
 	
 	if (archivo == NULL)
         {
@@ -269,7 +268,7 @@ void escribirTXT(char cadena[]){
 	FILE *fp;
  
  		
- 	fp = fopen ( "DatoE.txt", "a+t" ); //parámetro para escritura al final y para file tipo texto
+ 	fp = fopen ( "DatoR.txt", "a+t" ); //parámetro para escritura al final y para file tipo texto
  	
  	printf("\nIntroduce un texto al DatoE: ");
 
