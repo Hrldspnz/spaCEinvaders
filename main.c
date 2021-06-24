@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "include/raylib.h"
-#include "propiedades.h"
+#include "include/propiedades.h"
 
 Vector2 player = { SCREEN_WIDTH / 2 - 22, SCREEN_HEIGHT - 50 };
 Vector2 enemies[5][8];

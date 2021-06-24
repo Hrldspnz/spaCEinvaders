@@ -47,32 +47,21 @@ public class SocketServidor
                     cliente.setSoLinger (true, 10);
                     
                     // Se prepara un dato para enviar.
-                    DatoSocket dato = new DatoSocket("");
                     
-                    // Se prepara un flujo de salida de datos, es decir, la clase encargada
-                    // de escribir datos en el socket.
-                    DataOutputStream bufferSalida =
-                            new DataOutputStream (cliente.getOutputStream());
-                    System.out.println(bufferSalida);
-                    // Se envía el dato.
-                    dato.writeObject (bufferSalida);
-                    System.out.println ("Servidor Java: Enviado " + dato.leerTXT());
+                    DatoSocket Dato = new DatoSocket();
                     
-                    // Se prepara el flujo de entrada de datos, es decir, la clase encargada
-                    // de leer datos del socket.
-                    DataInputStream bufferEntrada =
-                            new DataInputStream (cliente.getInputStream());
-                    
-                    // Se crea un dato a leer y se le dice que se rellene con el flujo de
-                    // entrada de datos.
-                    DatoSocket aux = new DatoSocket("");
-                    aux.readObject (bufferEntrada);
-                    aux.escribirTXT(aux.toString());
-                    System.out.println ("Servidor java: Recibido " + aux.toString());
-                    
-                    // Se cierra el socket con el cliente.
-                    // La llamada anterior a setSoLinger() hará
-                    // que estos cierres esperen a que el cliente retire los datos.
+                    BufferedWriter out;
+                    out = new BufferedWriter (new OutputStreamWriter(cliente.getOutputStream()));
+                     
+                    out.write(Dato.leerTXT()+"\0");
+                    out.newLine(); 
+                    out.flush();
+     
+                    BufferedReader in;
+                    in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));    
+                    java.lang.String info = in.readLine().toString();
+                    Dato.escribirTXT(info);
+     
                     cliente.close();
                     
                     // Se cierra el socket encargado de aceptar clientes. Ya no
