@@ -22,7 +22,22 @@ int enemyCount = 40;
 int framesCounter = 0;
 int playerCanShoot = 1;
 int isInGame = 0;
+int isObserving = 0;
 int menuTextSelected = 0;
+
+
+Texture2D playerTexture;
+Texture2D pulpoSprite;
+Texture2D cangrejoSprite;
+Texture2D calamarSprite;
+Texture2D enemyAtk;
+Texture2D bunker;
+
+Sound playerShootFx;
+Sound enemyExplosionFx;
+Sound scoreFx;
+Sound playerExplosionFx;
+Sound uiFx;
 
 bool moveDownwards = false;
 
@@ -31,11 +46,16 @@ void updateBullets(Sound*, Sound*, float);
 void updateEnemies(float);
 void updateEnemiesBullets(Sound*, float);
 void initGame();
+void playGame();
+void observeGame();
+void loadTextures();
+void loadSounds();
 void drawGame(Texture2D*, Texture2D*, Texture2D*, Texture2D*, Texture2D*, Texture2D*);
 void drawMainMenu();
 void handleMainMenu(Sound*);
 void handleEndGame(Sound*);
 void escribirTXT(char cadena[]);
+char * leerTXT();
 
 /**
  * Crea todos lo objetos que el juego va utilizar
@@ -47,20 +67,10 @@ int main() {
     SetTargetFPS(60);
     HideCursor();
 
-    Texture2D playerTexture = LoadTexture("assets/sprites/player.png");
-    Texture2D pulpoSprite = LoadTexture("assets/sprites/pulpo.png");
-    Texture2D cangrejoSprite = LoadTexture("assets/sprites/cangrejo.png");
-    Texture2D calamarSprite = LoadTexture("assets/sprites/calamar.png");
-    Texture2D enemyAtk = LoadTexture("assets/sprites/enemy_atk.png");
-    Texture2D bunker = LoadTexture("assets/sprites/escudo.gif");
-
     InitAudioDevice();
-
-    Sound playerShootFx = LoadSound("assets/sounds/player_shoot.wav");
-    Sound enemyExplosionFx = LoadSound("assets/sounds/enemy_explosion.wav");
-    Sound scoreFx = LoadSound("assets/sounds/score.wav");
-    Sound playerExplosionFx = LoadSound("assets/sounds/player_explosion.wav");
-    Sound uiFx = LoadSound("assets/sounds/ui_interact.wav");
+    
+    loadTextures();
+    loadSounds();
 
     SetSoundVolume(playerShootFx, 0.2);
     SetSoundVolume(enemyExplosionFx, 0.1);
@@ -71,10 +81,72 @@ int main() {
 
     while (!WindowShouldClose()) {
 
-        char cadena[1200] = "";
-
         if (player.HP > 0 && enemyCount > 0 && isInGame) {
-            if (!playerCanShoot) framesCounter++;
+            playGame();
+        }else if(isObserving){
+            observeGame();
+        }
+         else if (!isInGame) {
+            initGame();
+            handleMainMenu(&uiFx);
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+
+        if (isInGame || isObserving) {
+            drawGame(&playerTexture, &pulpoSprite, &cangrejoSprite, &calamarSprite, &enemyAtk, &bunker);
+        } else{ 
+            drawMainMenu(&uiFx);
+        } /*else {
+            //handleEndGame(&uiFx);
+        }*/
+        
+        EndDrawing();
+
+    }
+
+    UnloadTexture(bunker);
+    UnloadTexture(playerTexture);
+    UnloadTexture(pulpoSprite);
+    UnloadTexture(cangrejoSprite);
+    UnloadTexture(calamarSprite);
+    UnloadTexture(enemyAtk);
+
+    UnloadSound(playerShootFx);
+    UnloadSound(enemyExplosionFx);
+    UnloadSound(scoreFx);
+
+    CloseAudioDevice();
+
+    CloseWindow();
+
+    return 0;
+}
+
+void observeGame(){
+    //char document[]
+    char *lines = strtok(leerTXT(),"\n");
+    /*char *line = "";
+    strcat(line, lines);*/
+
+    char *playerPosX = strtok(lines," ");
+    playerPosX = strtok(NULL, " ");
+    //printf("%s\n",playerPosX);
+    //player.posX = atoi(playerPosX);
+    while(lines != NULL){      
+        printf("a %s\n",lines);
+        lines = strtok(NULL," ");
+    }
+    
+    
+
+}
+
+void playGame(){
+    
+    char cadena[1500] = "";
+    if (!playerCanShoot) framesCounter++;
 
             if (framesCounter == 60) {
                 framesCounter = 0;
@@ -87,7 +159,7 @@ int main() {
             updateEnemiesBullets(&playerExplosionFx, GetFrameTime());
 
             char buffer[4];
-            
+
             itoa(player.posX, buffer, 10);
             strcat(cadena, "JPosx: ");
             strcat(cadena, buffer);
@@ -110,7 +182,7 @@ int main() {
                 }
             }
 
-            
+
             for (int j = 0; j < 4; ++j){
                 itoa(bunkers[j].HP, buffer, 10);
                 strcat(cadena, "HP: ");
@@ -147,44 +219,7 @@ int main() {
             sleep(0.05);
             
 
-        } else if (!isInGame) {
-            handleMainMenu(&uiFx);
-        }
-
-        BeginDrawing();
-        ClearBackground(BLACK);
-
-        if (isInGame) {
-            drawGame(&playerTexture, &pulpoSprite, &cangrejoSprite, &calamarSprite, &enemyAtk, &bunker);
-        } else{ 
-            drawMainMenu(&uiFx);
-        } /*else {
-            //handleEndGame(&uiFx);
-        }*/
-        
-        EndDrawing();
-
-    }
-
-    UnloadTexture(bunker);
-    UnloadTexture(playerTexture);
-    UnloadTexture(pulpoSprite);
-    UnloadTexture(cangrejoSprite);
-    UnloadTexture(calamarSprite);
-    UnloadTexture(enemyAtk);
-
-    UnloadSound(playerShootFx);
-    UnloadSound(enemyExplosionFx);
-    UnloadSound(scoreFx);
-
-    CloseAudioDevice();
-
-    CloseWindow();
-
-    return 0;
 }
-
-
 
 /** 
  * Actualiza la posicion del jugador.
@@ -197,10 +232,6 @@ int main() {
 */
 void updatePlayer(Sound* fx, float mov_speed) {
 
-
-    //
-
-    
     if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
         player.posX -= MOVEMENT_SPEED * mov_speed;
     } else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
@@ -415,9 +446,36 @@ void updateEnemiesBullets(Sound* fx, float mov_speed) {
 }
 
 /**
+ * Funcion encargada de asignar las texturas utilizadas por el juego
+ * @author Mat
+ * */
+void loadTextures(){
+    playerTexture = LoadTexture("assets/sprites/player.png");
+    pulpoSprite = LoadTexture("assets/sprites/pulpo.png");
+    cangrejoSprite = LoadTexture("assets/sprites/cangrejo.png");
+    calamarSprite = LoadTexture("assets/sprites/calamar.png");
+    enemyAtk = LoadTexture("assets/sprites/enemy_atk.png");
+    bunker = LoadTexture("assets/sprites/escudo.gif");
+}
+
+/**
+ * Funcion encargada de asignar los sonidos que el juego reproducira
+ * @author Mat
+ * 
+ * */
+void loadSounds(){
+    playerShootFx = LoadSound("assets/sounds/player_shoot.wav");
+    enemyExplosionFx = LoadSound("assets/sounds/enemy_explosion.wav");
+    scoreFx = LoadSound("assets/sounds/score.wav");
+    playerExplosionFx = LoadSound("assets/sounds/player_explosion.wav");
+    uiFx = LoadSound("assets/sounds/ui_interact.wav");
+}
+
+
+/**
  * Esta funcion se encarga de dibujar todos los sprites del juego.
  * Estos sprites son dibujados segun las posiciones ya calculadas de los enemigos, bunkers y el jugador.
- * @Author Mat
+ * @author Mat
  * @param playerTexture sprite del jugador
  * @param pulpoSprite sprite del jugador
  * @param cangrejoSprite sprite del jugador
@@ -484,9 +542,15 @@ void drawGame(Texture2D* playerTexture, Texture2D* pulpoSprite, Texture2D* cangr
 void drawMainMenu() {
 
         DrawText("Space Invaders", SCREEN_WIDTH / 2 - MeasureText("Space Invaders", 70) / 2, 30, 70, WHITE);
-
+        if(menuTextSelected == 0 ){
             DrawText("- Play -", SCREEN_WIDTH / 2 - MeasureText("- Play -", 55) / 2, 300, 55, WHITE);
-            DrawText("Press enter to play", SCREEN_WIDTH / 2 - MeasureText("Press enter to play", 50) / 2, 400, 50, WHITE);
+            DrawText("Observe", SCREEN_WIDTH / 2 - MeasureText("Observe", 50) / 2, 400, 55, WHITE);
+            DrawText("Press enter to play", SCREEN_WIDTH / 2 - MeasureText("Press enter to play", 50) / 2, 500, 50, WHITE);
+        }else{
+            DrawText("Play", SCREEN_WIDTH / 2 - MeasureText("Play", 55) / 2, 300, 55, WHITE);
+            DrawText("- Observe -", SCREEN_WIDTH / 2 - MeasureText("- Observe -", 50) / 2, 400, 55, WHITE);
+            DrawText("Press enter to play", SCREEN_WIDTH / 2 - MeasureText("Press enter to play", 50) / 2, 500, 50, WHITE);
+        }
 }
 
 /**
@@ -499,8 +563,17 @@ void handleMainMenu(Sound* uiFx) {
 
         if (IsKeyPressed(KEY_ENTER) || IsKeyPressed(KEY_SPACE)) {
             PlaySound(*uiFx);
-            
+            if(menuTextSelected == 0 )
                 isInGame = 1;
+            else if(menuTextSelected == 1)
+                isObserving = 1;
+    
+        }else if (IsKeyPressed(KEY_DOWN) || IsKeyPressed(KEY_S)){            
+            menuTextSelected = 1;
+            PlaySound(*uiFx);
+        }else if (IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)){            
+            menuTextSelected = 0;
+            PlaySound(*uiFx);
         }
 }
 
@@ -514,6 +587,8 @@ void initGame() {
     player.HP = 3;
     player.posX = SCREEN_WIDTH / 2 - 22;
     player.posY = SCREEN_HEIGHT - 50 ;
+    score = 0;
+    enemyCount = 40;
 
     bunkers[0].posX = (SCREEN_WIDTH/4)-SCREEN_WIDTH*0.20;
     bunkers[1].posX = (SCREEN_WIDTH/4);
@@ -542,6 +617,36 @@ void initGame() {
         enemiesBullets[i].posX = -1;
         enemiesBullets[i].posY = -1;
     }
+}
+
+char * leerTXT(){
+	FILE *archivo;
+	char caracter;
+	static char data[1200];
+	int i= 0;
+	
+	archivo = fopen("DatoR.txt","r");
+	
+	if (archivo == NULL)
+        {
+            printf("\nError de apertura del archivo. \n\n");
+        }
+        else
+        {
+            while((caracter = fgetc(archivo)) != EOF)
+	    {
+		data[i] = caracter;
+		i++;
+	    }
+        }
+
+        fclose(archivo);
+
+		data[i] = '\n';
+
+		return data;
+
+		
 }
 
 void escribirTXT(char cadena[]){
