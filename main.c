@@ -93,6 +93,7 @@ int main() {
             strcat(cadena, buffer);
             strcat(cadena, " JHP: ");
             itoa(player.HP, buffer, 10);
+            strcat(cadena, buffer);
             strcat(cadena, "\n");
 
             for (int i = 0; i < 5; ++i) {
