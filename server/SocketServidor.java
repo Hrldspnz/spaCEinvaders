@@ -1,8 +1,11 @@
-package socket;
+package server;
 
 
 import java.net.*;
 import java.io.*;
+import java.util.Vector;
+import java.util.regex.Pattern;
+import socket.DatoSocket;
 
 /**
  * Clase principal que instancia un socket servidor, acepta una conexión
@@ -14,9 +17,20 @@ public class SocketServidor
     {
         // Se instancia la clase principal para que haga todo lo que tiene que
         // hacer el ejemplo
+       //SocketServidor socket = new SocketServidor();
+       //socket.SocketServidor();        
+       Nivel nivel = new Nivel();
+       DatoSocket DSocket = new DatoSocket();
+       String[] Datos;
+       Datos = DSocket.leerTXT().split(" ");
+       
+       
+   
+       
 
-       SocketServidor socket = new SocketServidor();
-       socket.SocketServidor();
+       
+       
+       
     }
     
      /**
