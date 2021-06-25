@@ -3,19 +3,21 @@
 #include <string.h>
 #include "include/raylib.h"
 #include "include/propiedades.h"
+#include "Aliens.h"
+#include "Player.h"
+#include "Bullets.h"
+#include "Bunker.h"
 
-Vector2 player = { SCREEN_WIDTH / 2 - 22, SCREEN_HEIGHT - 50 };
-Vector2 enemies[5][8];
-Vector2 bullets[50];
-Vector2 enemiesBullets[50];
-Vector2 bunkers[4];
+struct Aliens aliens[5][8]; 
+struct Player player;
+struct Bullets bullets[50];
+struct Bullets enemiesBullets[50];
+struct Bunker bunkers[4];
 
 int score = 0;
-int bunkersHP[4] = { BUNKER_HP, BUNKER_HP, BUNKER_HP, BUNKER_HP};
 int marginL = 10, marginR = SCREEN_WIDTH-64;
 int direction = 1;
 int enemyCount = 40;
-int playerHP = 3;
 int framesCounter = 0;
 int playerCanShoot = 1;
 int isInGame = 0;
@@ -32,7 +34,6 @@ void drawGame(Texture2D*, Texture2D*, Texture2D*, Texture2D*, Texture2D*, Textur
 void drawMainMenu();
 void handleMainMenu(Sound*);
 void handleEndGame(Sound*);
-
 
 /**
  * Crea todos lo objetos que el juego va utilizar
@@ -68,7 +69,7 @@ int main() {
 
     while (!WindowShouldClose()) {
 
-        if (playerHP > 0 && enemyCount > 0 && isInGame) {
+        if (player.HP > 0 && enemyCount > 0 && isInGame) {
             if (!playerCanShoot) framesCounter++;
 
             if (framesCounter == 60) {
@@ -86,18 +87,6 @@ int main() {
 
         BeginDrawing();
         ClearBackground(BLACK);
-
-        bunkers[0].x = (SCREEN_WIDTH/4)-SCREEN_WIDTH*0.20;
-        bunkers[1].x = (SCREEN_WIDTH/4);
-        bunkers[2].x = SCREEN_WIDTH - (SCREEN_WIDTH/4)-SCREEN_WIDTH*0.20;
-        bunkers[3].x = SCREEN_WIDTH - (SCREEN_WIDTH/4);
-
-        bunkers[0].y = (SCREEN_HEIGHT)-150;
-        bunkers[1].y = (SCREEN_HEIGHT)-150;
-        bunkers[2].y = (SCREEN_HEIGHT)-150;
-        bunkers[3].y = (SCREEN_HEIGHT)-150;
-
-
 
         if (isInGame) {
             drawGame(&playerTexture, &pulpoSprite, &cangrejoSprite, &calamarSprite, &enemyAtk, &bunker);
@@ -142,9 +131,9 @@ int main() {
 */
 void updatePlayer(Sound* fx, float mov_speed) {
     if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
-        player.x -= MOVEMENT_SPEED * mov_speed;
+        player.posX -= MOVEMENT_SPEED * mov_speed;
     } else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
-        player.x += MOVEMENT_SPEED * mov_speed;
+        player.posX += MOVEMENT_SPEED * mov_speed;
     }
 
     if (IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_W)|| IsKeyPressed(KEY_UP)) {
@@ -152,19 +141,20 @@ void updatePlayer(Sound* fx, float mov_speed) {
         if (playerCanShoot) {
             playerCanShoot = 0;
             for (int i = 0; i < 100; i++) {
-                if (bullets[i].x == -1 && bullets[i].y == -1) {
+                if (bullets[i].posX == -1 && bullets[i].posY == -1) {
                     PlaySound(*fx);
-                    bullets[i] = (Vector2) { player.x + 22 - 2, player.y - 2 };
+                    bullets[i].posX = player.posX + 22 - 2;
+                    bullets[i].posY = player.posY - 2 ;
                     break;
                 }
             }
         }
     }
 
-    if (player.x + PLAYER_WIDTH > SCREEN_WIDTH) {
-        player.x = SCREEN_WIDTH - PLAYER_WIDTH;
-    } else if (player.x < 0) {
-        player.x = 0;
+    if (player.posX + PLAYER_WIDTH > SCREEN_WIDTH) {
+        player.posX = SCREEN_WIDTH - PLAYER_WIDTH;
+    } else if (player.posX < 0) {
+        player.posX = 0;
     }
 }
 
@@ -179,27 +169,30 @@ void updatePlayer(Sound* fx, float mov_speed) {
  * */
 void updateBullets(Sound* explosionFx, Sound* scoreFx, float mov_speed) {
     for (int i = 0; i < 50; ++i) {
-        if (bullets[i].x != -1) {
+        if (bullets[i].posX != -1) {
             for (int col = 0; col < 5; ++col) {
                 for (int row = 0; row < 8; ++row) {
-                    if (enemies[col][row].x != -1 && enemies[col][row].y != 1) {
-                        if (CheckCollisionRecs((Rectangle) { bullets[i].x, bullets[i].y, 6, 6 }, (Rectangle) { enemies[col][row].x, enemies[col][row].y, ENEMY_WIDTH, ENEMY_HEIGHT })) {
+                    if (aliens[col][row].posX != -1 && aliens[col][row].posY != 1) {
+                        if (CheckCollisionRecs((Rectangle) { bullets[i].posX, bullets[i].posY, 6, 6 }, (Rectangle) { aliens[col][row].posX, aliens[col][row].posY, ENEMY_WIDTH, ENEMY_HEIGHT })) {
                             PlaySound(*explosionFx);
-                            enemies[col][row] = (Vector2) { -1, -1 };
-                            bullets[i] = (Vector2) { -1, -1 };
+                            aliens[col][row].posX = -1; 
+                            aliens[col][row].posY = -1;
+                            bullets[i].posX = -1;
+                            bullets[i].posY = -1;
                             enemyCount--;
                             score += 100;
                             if (score % 1000 == 0) PlaySound(*scoreFx);
                         }
                         for (int j = 0; j < 4; j++)
                         {
-                            if(CheckCollisionRecs((Rectangle) { bullets[i].x, bullets[i].y, 6, 6 }, 
-                                                (Rectangle) {bunkers[j].x, bunkers[j].y, BUNKER_WIDTH, BUNKER_HEIGHT}) 
-                                                && bunkersHP[j]>0){
+                            if(CheckCollisionRecs((Rectangle) { bullets[i].posX, bullets[i].posY, 6, 6 }, 
+                                                (Rectangle) {bunkers[j].posX, bunkers[j].posY, BUNKER_WIDTH, BUNKER_HEIGHT}) 
+                                                && bunkers[j].HP>0){
 
                                 PlaySound(*explosionFx);
-                                bunkersHP[j] -=1;                    
-                                bullets[i] = (Vector2) { -1, -1 };        
+                                bunkers[j].HP -=1;
+                                bullets[i].posX = -1;
+                                bullets[i].posY = -1;      
                             }
 
                         }
@@ -208,12 +201,13 @@ void updateBullets(Sound* explosionFx, Sound* scoreFx, float mov_speed) {
                 }
             }
 
-            if (bullets[i].y < 0) {
-                bullets[i] = (Vector2) { -1, -1 };
+            if (bullets[i].posY < 0) {
+                bullets[i].posX = -1;
+                bullets[i].posY = -1;
             }
 
-            if (bullets[i].x != -1) {
-                bullets[i].y -= 400 * mov_speed;
+            if (bullets[i].posX != -1) {
+                bullets[i].posY -= 400 * mov_speed;
             }
 
         }
@@ -229,63 +223,67 @@ void updateBullets(Sound* explosionFx, Sound* scoreFx, float mov_speed) {
  * @param mov_speed velocidad de movimiento de los enemigos (cantidad de posiciones en x que se mueven)
  * */
 void updateEnemies(float mov_speed) {
-    Vector2 aux = { 0, 0 };
-    Vector2* first = &aux;
-    Vector2* last = &enemies[0][0];
+    struct Aliens aux;
+    aux.posX = 0;
+    aux.posY = 0;
+    struct Aliens* first = &aux;
+    struct Aliens* last = &aliens[0][0];
 
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 8; ++j){
-            if (enemies[i][j].x != -1) first = &enemies[i][j];
+            if (aliens[i][j].posX != -1) first = &aliens[i][j];
         }
     }
 
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 8; ++j) {
-            Vector2* enemy = &enemies[i][j];
-            if (enemy->x == -1) continue;
+            struct Aliens* enemy = &aliens[i][j];
+            if (enemy->posX == -1) continue;
 
-            if (enemy->x < first->x) first = enemy;
-            else if (enemy->x > last->x) last = enemy;
+            if (enemy->posX < first->posX) first = enemy;
+            else if (enemy->posX > last->posX) last = enemy;
         }
     }
 
-    if (first->x < marginL){
+    if (first->posX < marginL){
         direction = 1;
     } 
-    else if (last->x > marginR){
+    else if (last->posX > marginR){
         direction = -1;
-    }else if(first->x <= marginL+10 || last->x >= marginR-10){
+    }else if(first->posX <= marginL+10 || last->posX >= marginR-10){
         moveDownwards = true;
     }
 
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 8; ++j) {
-            Vector2* enemy = &enemies[i][j];
+             struct Aliens* enemy = &aliens[i][j];
             if(moveDownwards){
-               enemy->y+=2;
-               if(enemy->y >= SCREEN_HEIGHT - 150){
-                   playerHP = 0;
+               enemy->posY+=2;
+               if(enemy->posY >= SCREEN_HEIGHT - 150){
+                   player.HP = 0;
                }
             }
-            if (enemy->x == -1) continue;
+            if (enemy->posX == -1) continue;
             //velocidad de movimiento enemigo
-            enemy->x += direction * 100 * (40 / enemyCount) * mov_speed;
+            enemy->posX += direction * 100 * (20 / (enemyCount/2)) * mov_speed;
             
 
             if (i == 4) {
                 if (GetRandomValue(1, 400) == 1) {
                     for (int k = 0; k < 50; ++k) {
-                        if (enemiesBullets[k].x == -1 && enemiesBullets[k].y == -1) {
-                            enemiesBullets[k] = (Vector2) { enemy->x + 22 - 2, enemy->y + 2};
+                        if (enemiesBullets[k].posX == -1 && enemiesBullets[k].posY == -1) {
+                            enemiesBullets[k].posX = enemy->posX + 22 - 2;
+                            enemiesBullets[k].posY = enemy->posY + 2;
                             break;
                         }
                     }
                 }
-            } else if (enemies[i + 1][j].x == -1) {
+            } else if (aliens[i + 1][j].posX == -1) {
                 if (GetRandomValue(1, 400) == 1) {
                     for (int k = 0; k < 50; ++k) {
-                        if (enemiesBullets[k].x == -1 && enemiesBullets[k].y == -1) {
-                            enemiesBullets[k] = (Vector2) { enemy->x + 22 - 2, enemy->y + 2};
+                        if (enemiesBullets[k].posX == -1 && enemiesBullets[k].posY == -1) {
+                            enemiesBullets[k].posX = enemy->posX + 22 - 2;
+                            enemiesBullets[k].posY = enemy->posY + 2;
                             break;
                         }
                     }
@@ -305,34 +303,37 @@ void updateEnemies(float mov_speed) {
   */
 void updateEnemiesBullets(Sound* fx, float mov_speed) {
     for (int i = 0; i < 50; ++i) {
-        if (enemiesBullets[i].x != -1 && enemiesBullets[i].y != -1) {
-            Vector2* bullet = &enemiesBullets[i];
-            if (CheckCollisionRecs((Rectangle) { enemiesBullets[i].x, enemiesBullets[i].y, BULLET_WIDTH, BULLET_HEIGHT },
-                                    (Rectangle) { player.x, player.y, PLAYER_WIDTH, PLAYER_HEIGHT })) {
+        if (enemiesBullets[i].posX != -1 && enemiesBullets[i].posY != -1) {
+            struct Bullets* bullet = &enemiesBullets[i];
+            if (CheckCollisionRecs((Rectangle) { enemiesBullets[i].posX, enemiesBullets[i].posY, BULLET_WIDTH, BULLET_HEIGHT },
+                                    (Rectangle) { player.posX, player.posY, PLAYER_WIDTH, PLAYER_HEIGHT })) {
                 PlaySound(*fx);
-                playerHP -= 1;
-                enemiesBullets[i] = (Vector2) { -1, -1 };
+                player.HP -= 1;
+                enemiesBullets[i].posX = -1;
+                enemiesBullets[i].posY = -1;
             }
             for (int j = 0; j < 4; j++)
             {
-                if(CheckCollisionRecs((Rectangle) { enemiesBullets[i].x, enemiesBullets[i].y, BULLET_WIDTH, BULLET_HEIGHT}, 
-                                    (Rectangle) {bunkers[j].x, bunkers[j].y, BUNKER_WIDTH, BUNKER_HEIGHT}) 
-                                    && bunkersHP[j]>0){
+                if(CheckCollisionRecs((Rectangle) { enemiesBullets[i].posX, enemiesBullets[i].posY, BULLET_WIDTH, BULLET_HEIGHT}, 
+                                    (Rectangle) {bunkers[j].posX, bunkers[j].posY, BUNKER_WIDTH, BUNKER_HEIGHT}) 
+                                    && bunkers[j].HP>0){
 
                     PlaySound(*fx);
-                    bunkersHP[j] -=1;                    
-                    enemiesBullets[i] = (Vector2) { -1, -1 };        
+                    bunkers[j].HP -=1;          
+                    enemiesBullets[i].posX = -1;
+                    enemiesBullets[i].posY = -1;      
                 }
 
             }
             
             
-            if (bullet->y > SCREEN_HEIGHT) {
-                *bullet = (Vector2) { -1, -1 };
+            if (bullet->posY > SCREEN_HEIGHT) {
+                bullet->posX = -1;
+                bullet->posY = -1;
             }
 
-            if (bullet->x != -1) {
-                bullet->y += 400 * mov_speed;
+            if (bullet->posX != -1) {
+                bullet->posY += 400 * mov_speed;
             }
         } 
     }
@@ -350,39 +351,46 @@ void updateEnemiesBullets(Sound* fx, float mov_speed) {
  * @param bunker sprite del jugador
  * */
 void drawGame(Texture2D* playerTexture, Texture2D* pulpoSprite, Texture2D* cangrejoSprite, Texture2D* calamarSprite, Texture2D* enemyAtk, Texture2D* bunker) {
-    if (playerHP > 0 && enemyCount > 0) {
-        DrawTextureV(*playerTexture, player, WHITE);
+    if (player.HP > 0 && enemyCount > 0) {
+        Vector2 vPlayer = {player.posX, player.posY};
+        DrawTextureV(*playerTexture, vPlayer, WHITE);
         for (int i = 0; i < 4; i++)
         {
-            if(bunkersHP[i]>0)
-                DrawTextureV(*bunker,bunkers[i],WHITE);
+            if(bunkers[i].HP>0){
+                Vector2 vBunker = {bunkers[i].posX, bunkers[i].posY};
+                DrawTextureV(*bunker,vBunker,WHITE);
+            }
         }
         
         
        
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 8; ++j) {
-                if (enemies[i][j].x != -1) {
+                if (aliens[i][j].posX != -1) {
+                    Vector2 alien;
+                    alien.x = aliens[i][j].posX;
+                    alien.y = aliens[i][j].posY;
                     if (i == 0) {
-                        DrawTextureV(*calamarSprite, enemies[i][j], WHITE);
+                        DrawTextureV(*calamarSprite, alien, WHITE);
                     } else if (i <= 2) {
-                        DrawTextureV(*cangrejoSprite, enemies[i][j], WHITE);
+                        DrawTextureV(*cangrejoSprite, alien, WHITE);
                     } else {
-                        DrawTextureV(*pulpoSprite, enemies[i][j], WHITE);
+                        DrawTextureV(*pulpoSprite, alien, WHITE);
                     }
                 }
             }
         }
 
         for (int i = 0; i < 50; ++i) {
-            if (bullets[i].x != -1) {
-                DrawRectangle(bullets[i].x, bullets[i].y, 6, 6, WHITE);
+            if (bullets[i].posX != -1) {
+                DrawRectangle(bullets[i].posX, bullets[i].posY, 6, 6, WHITE);
             }
         }
 
         for (int i = 0; i < 50; ++i) {
-            if (enemiesBullets[i].x != -1) {
-                DrawTextureV(*enemyAtk, enemiesBullets[i], WHITE);
+            if (enemiesBullets[i].posX != -1) {
+                Vector2 enemieBullet = {enemiesBullets[i].posX, enemiesBullets[i].posY};
+                DrawTextureV(*enemyAtk, enemieBullet, WHITE);
             }
         }
 
@@ -427,17 +435,36 @@ void handleMainMenu(Sound* uiFx) {
  * @author Mat
 */
 void initGame() {
+
+    player.HP = 3;
+    player.posX = SCREEN_WIDTH / 2 - 22;
+    player.posY = SCREEN_HEIGHT - 50 ;
+
+    bunkers[0].posX = (SCREEN_WIDTH/4)-SCREEN_WIDTH*0.20;
+    bunkers[1].posX = (SCREEN_WIDTH/4);
+    bunkers[2].posX = SCREEN_WIDTH - (SCREEN_WIDTH/4)-SCREEN_WIDTH*0.20;
+    bunkers[3].posX = SCREEN_WIDTH - (SCREEN_WIDTH/4);
+
+    for (int i = 0; i < 4; i++)
+    {
+        bunkers[i].posY = (SCREEN_HEIGHT)-150;
+        bunkers[i].HP = BUNKER_HP;
+    }
+
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 8; ++j) {
-            enemies[i][j] = (Vector2) { j * 80 + 20, i * 50 + 50 };
+            aliens[i][j].posX = j * 80 + 20;
+            aliens[i][j].posY = i * 50 + 50;
         }
     }
 
     for (int i = 0; i < 50; ++i) {
-        bullets[i] = (Vector2) { -1, -1 };
+        bullets[i].posX = -1;
+        bullets[i].posY = -1;
     }
 
     for (int i = 0; i < 50; ++i) {
-        enemiesBullets[i] = (Vector2) { -1, -1 };
+        enemiesBullets[i].posX = -1;
+        enemiesBullets[i].posY = -1;
     }
 }
