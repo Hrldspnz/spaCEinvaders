@@ -89,8 +89,10 @@ int main() {
             char buffer[4];
             
             itoa(player.posX, buffer, 10);
-            strcat(cadena, "Posx: ");
+            strcat(cadena, "JPosx: ");
             strcat(cadena, buffer);
+            strcat(cadena, " JHP: ");
+            itoa(player.HP, buffer, 10);
             strcat(cadena, "\n");
 
             for (int i = 0; i < 5; ++i) {
@@ -117,11 +119,11 @@ int main() {
 
             for (int j = 0; j < 10; ++j){
                 itoa(enemiesBullets[j].posX, buffer, 10);
-                strcat(cadena, "PosX: ");
+                strcat(cadena, "ABalaPosx: ");
                 strcat(cadena, buffer);
 
                 itoa(enemiesBullets[j].posY, buffer, 10);
-                strcat(cadena, " Posy: ");
+                strcat(cadena, " ABalaPosy: ");
                 strcat(cadena, buffer);
                 strcat(cadena, "\n");
             }
@@ -130,11 +132,11 @@ int main() {
 
             for (int j = 0; j < 3; ++j){
                 itoa(bullets[j].posX, buffer, 10);
-                strcat(cadena, "PosX: ");
+                strcat(cadena, "BalaPosx: ");
                 strcat(cadena, buffer);
 
                 itoa(bullets[j].posY, buffer, 10);
-                strcat(cadena, " Posy: ");
+                strcat(cadena, " BalaPosy: ");
                 strcat(cadena, buffer);
                 strcat(cadena, "\n");
             }
