@@ -101,11 +101,9 @@ char * leerTXT(){
 	    }
         }
 
-		 
         fclose(archivo);
 
-	
-
+		data[i] = '\n';
 
 		return data;
 

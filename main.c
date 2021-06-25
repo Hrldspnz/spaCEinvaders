@@ -11,8 +11,8 @@
 
 struct Aliens aliens[5][8]; 
 struct Player player;
-struct Bullets bullets[50];
-struct Bullets enemiesBullets[50];
+struct Bullets bullets[10];
+struct Bullets enemiesBullets[10];
 struct Bunker bunkers[4];
 
 int score = 0;
@@ -35,7 +35,7 @@ void drawGame(Texture2D*, Texture2D*, Texture2D*, Texture2D*, Texture2D*, Textur
 void drawMainMenu();
 void handleMainMenu(Sound*);
 void handleEndGame(Sound*);
-void escribirTXT();
+void escribirTXT(char cadena[]);
 
 /**
  * Crea todos lo objetos que el juego va utilizar
@@ -71,6 +71,8 @@ int main() {
 
     while (!WindowShouldClose()) {
 
+        char cadena[1000] = "";
+
         if (player.HP > 0 && enemyCount > 0 && isInGame) {
             if (!playerCanShoot) framesCounter++;
 
@@ -78,13 +80,36 @@ int main() {
                 framesCounter = 0;
                 playerCanShoot = 1;
             }
-
+            
             updatePlayer(&playerShootFx, GetFrameTime());
             updateBullets(&enemyExplosionFx, &scoreFx, GetFrameTime());
             updateEnemies(GetFrameTime());
             updateEnemiesBullets(&playerExplosionFx, GetFrameTime());
-            escribirTXT();
-            sleep(1/60);
+
+            char buffer[4];
+            
+            itoa(player.posX, buffer, 10);
+            strcat(cadena, "Posx: ");
+            strcat(cadena, buffer);
+            strcat(cadena, "\n");
+
+            for (int i = 0; i < 5; ++i) {
+                for (int j = 0; j < 8; ++j){
+                    itoa(aliens[i][j].posX, buffer, 10);
+                    strcat(cadena, "Posx: ");
+                    strcat(cadena, buffer);
+
+                    itoa(aliens[i][j].posY, buffer, 10);
+                    strcat(cadena, " Posy: ");
+                    strcat(cadena, buffer);
+                    strcat(cadena, "\n");
+
+                }
+            }
+
+            escribirTXT(cadena);
+            sleep(0.05);
+            
 
         } else if (!isInGame) {
             handleMainMenu(&uiFx);
@@ -100,7 +125,7 @@ int main() {
         } /*else {
             //handleEndGame(&uiFx);
         }*/
-
+        
         EndDrawing();
 
     }
@@ -135,6 +160,11 @@ int main() {
  * 
 */
 void updatePlayer(Sound* fx, float mov_speed) {
+
+
+    //
+
+    
     if (IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A)) {
         player.posX -= MOVEMENT_SPEED * mov_speed;
     } else if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) {
@@ -173,7 +203,7 @@ void updatePlayer(Sound* fx, float mov_speed) {
  * @param score sonido reproducido al ganar puntaje
  * */
 void updateBullets(Sound* explosionFx, Sound* scoreFx, float mov_speed) {
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         if (bullets[i].posX != -1) {
             for (int col = 0; col < 5; ++col) {
                 for (int row = 0; row < 8; ++row) {
@@ -275,7 +305,7 @@ void updateEnemies(float mov_speed) {
 
             if (i == 4) {
                 if (GetRandomValue(1, 400) == 1) {
-                    for (int k = 0; k < 50; ++k) {
+                    for (int k = 0; k < 10; ++k) {
                         if (enemiesBullets[k].posX == -1 && enemiesBullets[k].posY == -1) {
                             enemiesBullets[k].posX = enemy->posX + 22 - 2;
                             enemiesBullets[k].posY = enemy->posY + 2;
@@ -285,7 +315,7 @@ void updateEnemies(float mov_speed) {
                 }
             } else if (aliens[i + 1][j].posX == -1) {
                 if (GetRandomValue(1, 400) == 1) {
-                    for (int k = 0; k < 50; ++k) {
+                    for (int k = 0; k < 10; ++k) {
                         if (enemiesBullets[k].posX == -1 && enemiesBullets[k].posY == -1) {
                             enemiesBullets[k].posX = enemy->posX + 22 - 2;
                             enemiesBullets[k].posY = enemy->posY + 2;
@@ -307,13 +337,17 @@ void updateEnemies(float mov_speed) {
   * @param mov_speed velocidad a la que se mueven las balas del enemigo
   */
 void updateEnemiesBullets(Sound* fx, float mov_speed) {
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         if (enemiesBullets[i].posX != -1 && enemiesBullets[i].posY != -1) {
             struct Bullets* bullet = &enemiesBullets[i];
             if (CheckCollisionRecs((Rectangle) { enemiesBullets[i].posX, enemiesBullets[i].posY, BULLET_WIDTH, BULLET_HEIGHT },
                                     (Rectangle) { player.posX, player.posY, PLAYER_WIDTH, PLAYER_HEIGHT })) {
                 PlaySound(*fx);
                 player.HP -= 1;
+                if(player.HP <= 0){
+
+                    player.posX = -1;
+                }
                 enemiesBullets[i].posX = -1;
                 enemiesBullets[i].posY = -1;
             }
@@ -386,13 +420,13 @@ void drawGame(Texture2D* playerTexture, Texture2D* pulpoSprite, Texture2D* cangr
             }
         }
 
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < 10; ++i) {
             if (bullets[i].posX != -1) {
                 DrawRectangle(bullets[i].posX, bullets[i].posY, 6, 6, WHITE);
             }
         }
 
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < 10; ++i) {
             if (enemiesBullets[i].posX != -1) {
                 Vector2 enemieBullet = {enemiesBullets[i].posX, enemiesBullets[i].posY};
                 DrawTextureV(*enemyAtk, enemieBullet, WHITE);
@@ -463,25 +497,28 @@ void initGame() {
         }
     }
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         bullets[i].posX = -1;
         bullets[i].posY = -1;
     }
 
-    for (int i = 0; i < 50; ++i) {
+    for (int i = 0; i < 10; ++i) {
         enemiesBullets[i].posX = -1;
         enemiesBullets[i].posY = -1;
     }
 }
 
-void escribirTXT(){
+void escribirTXT(char cadena[]){
 	FILE *fp;
     
-    char cadena[1000] = "";
-    char posXplayer[4];
-    itoa(player.posX, posXplayer, 8);
+    /*char cadena[250] = "";
+    char posX[5];
+    char posY[5];
+    itoa(px, posX, 10);
+    itoa(py, posY, 10);
     strcat(cadena, "Posx: ");
-    strcat(cadena, posXplayer);
+    strcat(cadena, posX);
+    strcat(cadena, posY);*/
 
  	fp = fopen ( "DatoR.txt", "w" ); //parámetro para escritura al final y para file tipo texto
  	
