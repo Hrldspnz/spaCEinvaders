@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 #include "include/raylib.h"
 #include "include/propiedades.h"
 #include "Aliens.h"
@@ -34,6 +35,7 @@ void drawGame(Texture2D*, Texture2D*, Texture2D*, Texture2D*, Texture2D*, Textur
 void drawMainMenu();
 void handleMainMenu(Sound*);
 void handleEndGame(Sound*);
+void escribirTXT();
 
 /**
  * Crea todos lo objetos que el juego va utilizar
@@ -81,6 +83,9 @@ int main() {
             updateBullets(&enemyExplosionFx, &scoreFx, GetFrameTime());
             updateEnemies(GetFrameTime());
             updateEnemiesBullets(&playerExplosionFx, GetFrameTime());
+            escribirTXT();
+            sleep(1/60);
+
         } else if (!isInGame) {
             handleMainMenu(&uiFx);
         }
@@ -430,7 +435,7 @@ void handleMainMenu(Sound* uiFx) {
 }
 
 /**
- * Inicialisa los enemigos, las balas lanzadas por el jugador y las balas lanzadas por el enemigo.
+ * inicializa el jugador, los bunkers, los enemigos, las balas lanzadas por el jugador y las balas lanzadas por el enemigo.
  * Estos los inicializa en una posicion calculada
  * @author Mat
 */
@@ -467,4 +472,20 @@ void initGame() {
         enemiesBullets[i].posX = -1;
         enemiesBullets[i].posY = -1;
     }
+}
+
+void escribirTXT(){
+	FILE *fp;
+    
+    char cadena[1000] = "";
+    char posXplayer[4];
+    itoa(player.posX, posXplayer, 8);
+    strcat(cadena, "Posx: ");
+    strcat(cadena, posXplayer);
+
+ 	fp = fopen ( "DatoR.txt", "w" ); //parámetro para escritura al final y para file tipo texto
+ 	
+ 	fwrite(cadena, sizeof(char), strlen(cadena), fp );
+ 	
+ 	fclose ( fp );
 }
