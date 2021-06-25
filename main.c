@@ -11,7 +11,7 @@
 
 struct Aliens aliens[5][8]; 
 struct Player player;
-struct Bullets bullets[10];
+struct Bullets bullets[3];
 struct Bullets enemiesBullets[10];
 struct Bunker bunkers[4];
 
@@ -71,7 +71,7 @@ int main() {
 
     while (!WindowShouldClose()) {
 
-        char cadena[1000] = "";
+        char cadena[1200] = "";
 
         if (player.HP > 0 && enemyCount > 0 && isInGame) {
             if (!playerCanShoot) framesCounter++;
@@ -106,6 +106,39 @@ int main() {
 
                 }
             }
+
+            
+            for (int j = 0; j < 4; ++j){
+                itoa(bunkers[j].HP, buffer, 10);
+                strcat(cadena, "HP: ");
+                strcat(cadena, buffer);
+                strcat(cadena, "\n");
+            }
+
+            for (int j = 0; j < 10; ++j){
+                itoa(enemiesBullets[j].posX, buffer, 10);
+                strcat(cadena, "PosX: ");
+                strcat(cadena, buffer);
+
+                itoa(enemiesBullets[j].posY, buffer, 10);
+                strcat(cadena, " Posy: ");
+                strcat(cadena, buffer);
+                strcat(cadena, "\n");
+            }
+
+            strcat(cadena, "Balas jugador\n");
+
+            for (int j = 0; j < 3; ++j){
+                itoa(bullets[j].posX, buffer, 10);
+                strcat(cadena, "PosX: ");
+                strcat(cadena, buffer);
+
+                itoa(bullets[j].posY, buffer, 10);
+                strcat(cadena, " Posy: ");
+                strcat(cadena, buffer);
+                strcat(cadena, "\n");
+            }
+            
 
             escribirTXT(cadena);
             sleep(0.05);
@@ -203,7 +236,7 @@ void updatePlayer(Sound* fx, float mov_speed) {
  * @param score sonido reproducido al ganar puntaje
  * */
 void updateBullets(Sound* explosionFx, Sound* scoreFx, float mov_speed) {
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 3; ++i) {
         if (bullets[i].posX != -1) {
             for (int col = 0; col < 5; ++col) {
                 for (int row = 0; row < 8; ++row) {
@@ -420,7 +453,7 @@ void drawGame(Texture2D* playerTexture, Texture2D* pulpoSprite, Texture2D* cangr
             }
         }
 
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 3; ++i) {
             if (bullets[i].posX != -1) {
                 DrawRectangle(bullets[i].posX, bullets[i].posY, 6, 6, WHITE);
             }
@@ -497,7 +530,7 @@ void initGame() {
         }
     }
 
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 3; ++i) {
         bullets[i].posX = -1;
         bullets[i].posY = -1;
     }
