@@ -55,7 +55,7 @@ void drawMainMenu();
 void handleMainMenu(Sound*);
 void handleEndGame(Sound*);
 void escribirTXT(char cadena[]);
-char * leerTXT();
+void leerTXT();
 
 /**
  * Crea todos lo objetos que el juego va utilizar
@@ -126,32 +126,10 @@ int main() {
 
 //buscar si se puede hacer desde la lectura del archivo
 void observeGame(){
-    //char document[]
-    char* lines = leerTXT();
+    leerTXT();
     if(player.HP <= 0){
         isObserving = 0;
     }
-    //int i = 0;
-    //printf("%s\n", lines[1]);
-    /*char *playerPosX = strtok(lines[0]," ");
-    playerPosX = strtok(NULL, " ");
-    printf("%s\n", playerPosX);
-    
-    char *playerPosY = strtok(lines[1]," ");
-    playerPosY = strtok(NULL, " ");
-    printf("%s", playerPosY);*/
-    /*char *line = "";
-    strcat(line, lines);*/
-
-    /*//printf("%s\n",playerPosX);
-    //player.posX = atoi(playerPosX);
-    while(lines != NULL){      
-        printf("a %s\n",lines);
-        lines = strtok(NULL," ");
-    }*/
-    
-    
-
 }
 
 void playGame(){
@@ -552,16 +530,16 @@ void drawGame(Texture2D* playerTexture, Texture2D* pulpoSprite, Texture2D* cangr
  * 
 */
 void drawMainMenu() {
-
-        DrawText("Space Invaders", SCREEN_WIDTH / 2 - MeasureText("Space Invaders", 70) / 2, 30, 70, WHITE);
+    
+        DrawText("SpaCEinvaders", SCREEN_WIDTH / 2 - MeasureText("SpaCEinvaders", 70) / 2, 30, 70, YELLOW);
         if(menuTextSelected == 0 ){
-            DrawText("- Play -", SCREEN_WIDTH / 2 - MeasureText("- Play -", 55) / 2, 300, 55, WHITE);
-            DrawText("Observe", SCREEN_WIDTH / 2 - MeasureText("Observe", 50) / 2, 400, 55, WHITE);
-            DrawText("Press enter to play", SCREEN_WIDTH / 2 - MeasureText("Press enter to play", 50) / 2, 500, 50, WHITE);
+            DrawText("- Jugar -",  20, 300, 55, GREEN);
+            DrawText("Observar un juego",  10, 450, 55, WHITE);
+            DrawText("Presione enter para jugar",  10, 620, 50, WHITE);
         }else{
-            DrawText("Play", SCREEN_WIDTH / 2 - MeasureText("Play", 55) / 2, 300, 55, WHITE);
-            DrawText("- Observe -", SCREEN_WIDTH / 2 - MeasureText("- Observe -", 50) / 2, 400, 55, WHITE);
-            DrawText("Press enter to play", SCREEN_WIDTH / 2 - MeasureText("Press enter to play", 50) / 2, 500, 50, WHITE);
+            DrawText("Jugar", 10, 300, 55, WHITE);
+            DrawText("- Observar un juego -", 20 , 450, 55, GREEN);
+            DrawText("Presione enter para jugar", 10 , 620, 50, WHITE);
         }
 }
 
@@ -631,9 +609,8 @@ void initGame() {
     }
 }
 
-char * leerTXT(){
+void leerTXT(){
 	FILE *archivo;
-	char caracter;
     char linea[32];
 	static char data[1300];
 	int i= 0;
@@ -647,18 +624,13 @@ char * leerTXT(){
     else
     {
         fgets(linea, 32,(FILE*) archivo);
-        //printf("linea %s\n",linea);
         token = strtok(linea, " ");
         token = strtok(NULL, " ");
-        //printf("Player posX %s\n",token);//posX player
         if(token != NULL){
             player.posX = atoi(token);
             token = strtok(NULL, " ");
             token = strtok(NULL, " ");
-            //printf("Player HP %s\n",token);//vida
-            //if(token != NULL)
             player.HP = atoi(token);
-            //Coloca todos los aliens en la posicion observada
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 8; j++)
@@ -666,13 +638,10 @@ char * leerTXT(){
                     fgets(linea, 32,(FILE*) archivo);
                     token = strtok(linea, " ");
                     token = strtok(NULL, " ");
-                    //printf("Alien 1 posX %s\n",token);
                     aliens[i][j].posX = atoi(token);
                     token = strtok(NULL, " ");
                     token = strtok(NULL, " ");
                     aliens[i][j].posY = atoi(token);
-                    //printf("Alien 1 posY %s\n",token);
-                    /* code */
                 }
                 
             }
@@ -680,7 +649,6 @@ char * leerTXT(){
                 fgets(linea, 32,(FILE*) archivo);
                 token = strtok(linea, " ");
                 token = strtok(NULL, " ");
-                //printf("Vida escudo %d %s",i,token);
                 bunkers[i].HP = atoi(token);
             }
             for(int i = 0; i<10;i++){
@@ -688,11 +656,9 @@ char * leerTXT(){
                 token = strtok(linea, " ");
                 token = strtok(NULL, " ");
                 enemiesBullets[i].posX = atoi(token);
-                //printf("ABala %d posX %s \n",i+1,token);
                 token = strtok(NULL, " ");
                 token = strtok(NULL, " ");
                 enemiesBullets[i].posY = atoi(token);
-                //printf("ABala %d posY %s \n",i+1,token);
             }
             //Linea para saltar la linea que indica el inicio de las balas del jugador
             fgets(linea, 32,(FILE*) archivo);
@@ -707,18 +673,9 @@ char * leerTXT(){
             }
             
         }
-            
-	{
-		data[i] = caracter;
-		i++;
-	}
     }
     fclose(archivo);
-	data[i] = '\n';
-    sleep(0.05);
-	return data;
-
-		
+    sleep(0.05);	
 }
 
 void escribirTXT(char cadena[]){
