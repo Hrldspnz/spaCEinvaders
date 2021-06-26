@@ -56,4 +56,4 @@ ABalaPosx: -1 ABalaPosy: -1
 Balas jugador
 BalaPosx: -1 BalaPosy: -1
 BalaPosx: -1 BalaPosy: -1
-BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2
