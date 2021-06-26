@@ -1,1 +1,59 @@
-JPosx: 100 JHP: 3 Posx: 292 Posy: 52 Posx: 372 Posy: 52 Posx: 452 Posy: 52 Posx: 532 Posy: 52 Posx: 612 Posy: 52 Posx: 692 Posy: 52 Posx: 772 Posy: 52 Posx: 852 Posy: 52 Posx: 292 Posy: 102 Posx: 372 Posy: 102 Posx: 452 Posy: 102 Posx: 532 Posy: 102 Posx: 612 Posy: 102 Posx: 692 Posy: 102 Posx: 772 Posy: 102 Posx: 852 Posy: 102 Posx: 292 Posy: 152 Posx: 372 Posy: 152 Posx: 452 Posy: 152 Posx: 532 Posy: 152 Posx: 612 Posy: 152 Posx: 692 Posy: 152 Posx: 772 Posy: 152 Posx: 852 Posy: 152 Posx: 292 Posy: 202 Posx: 372 Posy: 202 Posx: 452 Posy: 202 Posx: 532 Posy: 202 Posx: 612 Posy: 202 Posx: 692 Posy: 202 Posx: 772 Posy: 202 Posx: 852 Posy: 202 Posx: 292 Posy: 252 Posx: 372 Posy: 252 Posx: 452 Posy: 252 Posx: -1 Posy: -1 Posx: -1 Posy: -1 Posx: 692 Posy: 252 Posx: 772 Posy: 252 Posx: 852 Posy: 252 HP: 1 HP: 2 HP: 2 HP: 2 ABalaPosx: 453 ABalaPosy: 374 ABalaPosx: 294 ABalaPosy: 368 ABalaPosx: 301 ABalaPosy: 326 ABalaPosx: 792 ABalaPosy: 260 ABalaPosx: -1 ABalaPosy: -1 ABalaPosx: -1 ABalaPosy: -1 ABalaPosx: -1 ABalaPosy: -1 ABalaPosx: -1 ABalaPosy: -1 ABalaPosx: -1 ABalaPosy: -1 ABalaPosx: -1 ABalaPosy: -1 Balas jugador BalaPosx: -1 BalaPosy: -1 BalaPosx: -1 BalaPosy: -1 BalaPosx: -1 BalaPosy: -1 
+JPosx: 478 JHP: 3
+Posx: 292 Posy: 52
+Posx: 372 Posy: 52
+Posx: 452 Posy: 52
+Posx: 532 Posy: 52
+Posx: 612 Posy: 52
+Posx: 692 Posy: 52
+Posx: 772 Posy: 52
+Posx: 852 Posy: 52
+Posx: 292 Posy: 102
+Posx: 372 Posy: 102
+Posx: 452 Posy: 102
+Posx: 532 Posy: 102
+Posx: 612 Posy: 102
+Posx: 692 Posy: 102
+Posx: 772 Posy: 102
+Posx: 852 Posy: 102
+Posx: 292 Posy: 152
+Posx: 372 Posy: 152
+Posx: 452 Posy: 152
+Posx: 532 Posy: 152
+Posx: 612 Posy: 152
+Posx: 692 Posy: 152
+Posx: 772 Posy: 152
+Posx: 852 Posy: 152
+Posx: 292 Posy: 202
+Posx: 372 Posy: 202
+Posx: 452 Posy: 202
+Posx: 532 Posy: 202
+Posx: 612 Posy: 202
+Posx: 692 Posy: 202
+Posx: 772 Posy: 202
+Posx: 852 Posy: 202
+Posx: 292 Posy: 252
+Posx: 372 Posy: 252
+Posx: 452 Posy: 252
+Posx: -1 Posy: -1
+Posx: -1 Posy: -1
+Posx: 692 Posy: 252
+Posx: 772 Posy: 252
+Posx: 852 Posy: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2

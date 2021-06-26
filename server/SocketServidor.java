@@ -17,21 +17,20 @@ public class SocketServidor
         // Se instancia la clase principal para que haga todo lo que tiene que
         // hacer el ejemplo
         SocketServidor socket = new SocketServidor();
-        //socket.SocketServidor();        
         Nivel nivel = new Nivel();
         DatoSocket DSocket = new DatoSocket();
         String[] Datos;
-        Datos = DSocket.leerTXT().split(" ");
-        java.lang.Integer indice = 5;
+        Datos = DSocket.leerTXTRecibido().split(" ");
+        java.lang.Integer indice;
         nivel.CreateNewLvl();
         DSocket.BorrarDatosE();
 
         java.lang.Boolean ejecucion = true;
         while(ejecucion == true){
         indice=5;
-        socket.SocketServidor();
+        //socket.SocketServidor();
         /**
-            * Ac� el servidor recorre todos los aliens asignandoles cada posici�n que tienen en el cliente
+            * Ac? el servidor recorre todos los aliens asignandoles cada posici?n que tienen en el cliente
             */
         
         for(java.lang.Integer i=0; i<5; i++){
@@ -93,22 +92,22 @@ public class SocketServidor
             
         
         /**
-            * Este for es para visualizar si se asigna la posici�n a los aliens 
+            * Este for es para visualizar si se asigna la posici?n a los aliens 
             * se puede borrar si quiere
             */
         
         for(java.lang.Integer i=0; i<5; i++){
                 for(java.lang.Integer j=0; j<8; j++){
                     if(i==0){
-                        System.out.println("Alien en la posici�n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                        System.out.println("Alien en la posici?n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
                         
                     }
                     if(i==1 || i==2){
-                        System.out.println("Alien en la posici�n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                        System.out.println("Alien en la posici?n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
                     }
                     if(3 <= i){
-                        System.out.println("Alien en la posici�n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                        System.out.println("Alien en la posici?n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
                     }
                 }
@@ -117,7 +116,7 @@ public class SocketServidor
         System.out.println("Posicion x del jugador: " + String.valueOf(nivel.getPlayerposX()) + " vida del jugador: "+ String.valueOf(nivel.getPlayerHp())+ " puntaje del jugador: "+ String.valueOf(nivel.getPPuntaje()));
         
         
-        //De aqu� en adelante se escribe los datos contenidos por el servidor al txt de datoE
+        //De aqu? en adelante se escribe los datos contenidos por el servidor al txt de datoE
         
         DSocket.escribirTXTEnviar("JPosx: " + String.valueOf(nivel.getPlayerposX()) + " " + "JHP: " + String.valueOf(nivel.getPlayerHp()) + " Score: "+ String.valueOf(nivel.getPPuntaje()));
         
@@ -149,6 +148,7 @@ public class SocketServidor
         }
 
     }  
+        
     }
     
      /**
@@ -184,7 +184,9 @@ public class SocketServidor
                     
                     BufferedWriter out;
                     out = new BufferedWriter (new OutputStreamWriter(cliente.getOutputStream()));
-                     
+                    
+                    System.out.println(Dato.leerTXT());
+                    
                     out.write(Dato.leerTXT()+"\0");
                     out.newLine(); 
                     out.flush();

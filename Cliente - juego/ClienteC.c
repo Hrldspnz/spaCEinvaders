@@ -86,7 +86,7 @@ char * leerTXT(){
 	static char data[10000];
 	int i= 0;
 	
-	archivo = fopen("DatoR.txt","r");
+	archivo = fopen("DatoE.txt","r");
 	
 	if (archivo == NULL)
         {
@@ -103,6 +103,7 @@ char * leerTXT(){
 
         fclose(archivo);
 
+
 		data[i] = '\n';
 
 		return data;
@@ -114,11 +115,10 @@ void escribirTXT(char cadena[]){
 	FILE *fp;
  
  		
- 	fp = fopen ( "DatoE.txt", "w" ); //parámetro para escritura al final y para file tipo texto
+ 	fp = fopen ( "DatoR.txt", "w" ); //parámetro para escritura al final y para file tipo texto
  	
- 	printf("\nIntroduce un texto al DatoE: ");
 
- 	fwrite(cadena, sizeof(char), strlen(cadena), fp );
+ 	fputs(cadena,  fp);
  	
  	fclose ( fp );
 }
