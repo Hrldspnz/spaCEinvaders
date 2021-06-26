@@ -28,7 +28,7 @@ public class DatoSocket implements Serializable
 try
 {
 //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-    File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt");
+    File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
 
 //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
     FileWriter escribir = new FileWriter(archivo,true);
@@ -60,7 +60,7 @@ try
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt");
+   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -99,7 +99,7 @@ System.out.println("Error al leer");
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt");
+   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
