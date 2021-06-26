@@ -16,19 +16,20 @@ public class SocketServidor
     {
         // Se instancia la clase principal para que haga todo lo que tiene que
         // hacer el ejemplo
-       SocketServidor socket = new SocketServidor();
-       //socket.SocketServidor();        
-       Nivel nivel = new Nivel();
-       DatoSocket DSocket = new DatoSocket();
-       String[] Datos;
-       Datos = DSocket.leerTXT().split(" ");
-       java.lang.Integer indice = 5;
-       nivel.CreateNewLvl();
-       DSocket.BorrarDatosE();
+        SocketServidor socket = new SocketServidor();
+        //socket.SocketServidor();        
+        Nivel nivel = new Nivel();
+        DatoSocket DSocket = new DatoSocket();
+        String[] Datos;
+        Datos = DSocket.leerTXT().split(" ");
+        java.lang.Integer indice = 5;
+        nivel.CreateNewLvl();
+        DSocket.BorrarDatosE();
 
-       java.lang.Boolean ejecucion = true;
-       while(ejecucion == true){
-        
+        java.lang.Boolean ejecucion = true;
+        while(ejecucion == true){
+        indice=5;
+        socket.SocketServidor();
         /**
             * Ac� el servidor recorre todos los aliens asignandoles cada posici�n que tienen en el cliente
             */

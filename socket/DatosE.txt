@@ -56,5 +56,665 @@ ABalaPosx: -1 ABalaPosy: -1
 Balas jugador
 BalaPosx: -1 BalaPosy: -1
 BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
 BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
+
+JPosx: 478 JHP: 3 Score: 80
+PosX: 292 PosY: 52
+PosX: 372 PosY: 52
+PosX: 452 PosY: 52
+PosX: 532 PosY: 52
+PosX: 612 PosY: 52
+PosX: 692 PosY: 52
+PosX: 772 PosY: 52
+PosX: 852 PosY: 52
+PosX: 292 PosY: 102
+PosX: 372 PosY: 102
+PosX: 452 PosY: 102
+PosX: 532 PosY: 102
+PosX: 612 PosY: 102
+PosX: 692 PosY: 102
+PosX: 772 PosY: 102
+PosX: 852 PosY: 102
+PosX: 292 PosY: 152
+PosX: 372 PosY: 152
+PosX: 452 PosY: 152
+PosX: 532 PosY: 152
+PosX: 612 PosY: 152
+PosX: 692 PosY: 152
+PosX: 772 PosY: 152
+PosX: 852 PosY: 152
+PosX: 292 PosY: 202
+PosX: 372 PosY: 202
+PosX: 452 PosY: 202
+PosX: 532 PosY: 202
+PosX: 612 PosY: 202
+PosX: 692 PosY: 202
+PosX: 772 PosY: 202
+PosX: 852 PosY: 202
+PosX: 292 PosY: 252
+PosX: 372 PosY: 252
+PosX: 452 PosY: 252
+PosX: -1 PosY: -1
+PosX: -1 PosY: -1
+PosX: 692 PosY: 252
+PosX: 772 PosY: 252
+PosX: 852 PosY: 252
+HP: 1
+HP: 2
+HP: 2
+HP: 2
+ABalaPosx: 453 ABalaPosy: 374
+ABalaPosx: 294 ABalaPosy: 368
+ABalaPosx: 301 ABalaPosy: 326
+ABalaPosx: 792 ABalaPosy: 260
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+ABalaPosx: -1 ABalaPosy: -1
+Balas jugador
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1
+BalaPosx: -1 BalaPosy: -1JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2JPosx: 460 JHP: 2
 

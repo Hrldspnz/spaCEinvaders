@@ -64,10 +64,10 @@ int main(int argc , char *argv[])
 	puts("Reply received\n");
 	//Add a NULL terminating character to make it a proper string before printing
 	puts(server_reply);
-  escribirTXT(server_reply);
+  	escribirTXT(server_reply);
 	
 	//Send some data
-	message = "Hola dfdsf fd fdsfdsf sdf dsf dsfdsf dsf dsf\n";
+	//message = "Hola dfdsf fd fdsfdsf sdf dsf dsfdsf dsf dsf\n";
 	if( send(s , leerTXT(), strlen(leerTXT()) , 0) < 0)
 	{
 		puts("Send failed");
@@ -86,7 +86,7 @@ char * leerTXT(){
 	static char data[10000];
 	int i= 0;
 	
-	archivo = fopen("DatoE.txt","r");
+	archivo = fopen("DatoR.txt","r");
 	
 	if (archivo == NULL)
         {
@@ -114,7 +114,7 @@ void escribirTXT(char cadena[]){
 	FILE *fp;
  
  		
- 	fp = fopen ( "DatoR.txt", "a+t" ); //parámetro para escritura al final y para file tipo texto
+ 	fp = fopen ( "DatoE.txt", "w" ); //parámetro para escritura al final y para file tipo texto
  	
  	printf("\nIntroduce un texto al DatoE: ");
 
