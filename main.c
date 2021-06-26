@@ -86,7 +86,7 @@ int main() {
         }else if(isObserving){
             observeGame();
         }
-         else if (!isInGame) {
+        else{
             initGame();
             handleMainMenu(&uiFx);
         }
@@ -124,20 +124,31 @@ int main() {
     return 0;
 }
 
+//buscar si se puede hacer desde la lectura del archivo
 void observeGame(){
     //char document[]
-    char *lines = strtok(leerTXT(),"\n");
+    char* lines = leerTXT();
+    if(player.HP <= 0){
+        isObserving = 0;
+    }
+    //int i = 0;
+    //printf("%s\n", lines[1]);
+    /*char *playerPosX = strtok(lines[0]," ");
+    playerPosX = strtok(NULL, " ");
+    printf("%s\n", playerPosX);
+    
+    char *playerPosY = strtok(lines[1]," ");
+    playerPosY = strtok(NULL, " ");
+    printf("%s", playerPosY);*/
     /*char *line = "";
     strcat(line, lines);*/
 
-    char *playerPosX = strtok(lines," ");
-    playerPosX = strtok(NULL, " ");
-    //printf("%s\n",playerPosX);
+    /*//printf("%s\n",playerPosX);
     //player.posX = atoi(playerPosX);
     while(lines != NULL){      
         printf("a %s\n",lines);
         lines = strtok(NULL," ");
-    }
+    }*/
     
     
 
@@ -361,6 +372,7 @@ void updateEnemies(float mov_speed) {
              struct Aliens* enemy = &aliens[i][j];
             if(moveDownwards){
                enemy->posY+=2;
+               //printf("%s vs %s", enemy->posY,   SCREEN_HEIGHT - 150);
                if(enemy->posY >= SCREEN_HEIGHT - 150){
                    player.HP = 0;
                }
@@ -622,29 +634,89 @@ void initGame() {
 char * leerTXT(){
 	FILE *archivo;
 	char caracter;
-	static char data[1200];
+    char linea[32];
+	static char data[1300];
 	int i= 0;
+    char *token;
 	
 	archivo = fopen("DatoR.txt","r");
-	
 	if (archivo == NULL)
-        {
-            printf("\nError de apertura del archivo. \n\n");
+    {
+        printf("\nError de apertura del archivo. \n\n");
+    }
+    else
+    {
+        fgets(linea, 32,(FILE*) archivo);
+        //printf("linea %s\n",linea);
+        token = strtok(linea, " ");
+        token = strtok(NULL, " ");
+        //printf("Player posX %s\n",token);//posX player
+        if(token != NULL){
+            player.posX = atoi(token);
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
+            //printf("Player HP %s\n",token);//vida
+            //if(token != NULL)
+            player.HP = atoi(token);
+            //Coloca todos los aliens en la posicion observada
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    fgets(linea, 32,(FILE*) archivo);
+                    token = strtok(linea, " ");
+                    token = strtok(NULL, " ");
+                    //printf("Alien 1 posX %s\n",token);
+                    aliens[i][j].posX = atoi(token);
+                    token = strtok(NULL, " ");
+                    token = strtok(NULL, " ");
+                    aliens[i][j].posY = atoi(token);
+                    //printf("Alien 1 posY %s\n",token);
+                    /* code */
+                }
+                
+            }
+            for(int i = 0; i<4; i++){
+                fgets(linea, 32,(FILE*) archivo);
+                token = strtok(linea, " ");
+                token = strtok(NULL, " ");
+                //printf("Vida escudo %d %s",i,token);
+                bunkers[i].HP = atoi(token);
+            }
+            for(int i = 0; i<10;i++){
+                fgets(linea, 32,(FILE*) archivo);
+                token = strtok(linea, " ");
+                token = strtok(NULL, " ");
+                enemiesBullets[i].posX = atoi(token);
+                //printf("ABala %d posX %s \n",i+1,token);
+                token = strtok(NULL, " ");
+                token = strtok(NULL, " ");
+                enemiesBullets[i].posY = atoi(token);
+                //printf("ABala %d posY %s \n",i+1,token);
+            }
+            //Linea para saltar la linea que indica el inicio de las balas del jugador
+            fgets(linea, 32,(FILE*) archivo);
+            for(int i = 0; i<3;i++){
+                fgets(linea, 32,(FILE*) archivo);
+                token = strtok(linea, " ");
+                token = strtok(NULL, " ");
+                bullets[i].posX = atoi(token);
+                token = strtok(NULL, " ");
+                token = strtok(NULL, " ");
+                bullets[i].posY = atoi(token);                
+            }
+            
         }
-        else
-        {
-            while((caracter = fgetc(archivo)) != EOF)
-	    {
+            
+	{
 		data[i] = caracter;
 		i++;
-	    }
-        }
-
-        fclose(archivo);
-
-		data[i] = '\n';
-
-		return data;
+	}
+    }
+    fclose(archivo);
+	data[i] = '\n';
+    sleep(0.05);
+	return data;
 
 		
 }
