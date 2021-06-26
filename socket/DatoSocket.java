@@ -46,7 +46,7 @@ try
     }
     
     /**
-     * Función para leer los datos que se reciben del socket
+     * Funciï¿½n para leer los datos que se reciben del socket
      * @return String con los datos del cliente
      */
      
@@ -60,7 +60,7 @@ try
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\arman\\OneDrive\\Escritorio\\Server\\src\\socket\\DatosR.txt");
+   lector=new FileReader("spaCEinvaders\\socket\\DatosR.txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -84,7 +84,7 @@ System.out.println("Error al leer");
      }
   
   /**
-   * Metodo que lee los datos de las balas, que se pasarán al cliente observador
+   * Metodo que lee los datos de las balas, que se pasarï¿½n al cliente observador
    * @return String con los datos de las balas
    */
   
@@ -99,7 +99,7 @@ System.out.println("Error al leer");
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\arman\\OneDrive\\Escritorio\\Server\\src\\socket\\DatosR.txt");
+   lector=new FileReader("spaCEinvaders\\socket\\DatosR.txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -132,7 +132,7 @@ System.out.println("Error al leer");
 try
 {
 //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-    File archivo=new File("C:\\Users\\arman\\OneDrive\\Escritorio\\Server\\src\\socket\\DatosE.txt");
+    File archivo=new File("spaCEinvaders\\socket\\DatosE.txt");
 
 //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
     FileWriter escribir = new FileWriter(archivo,true);
@@ -152,7 +152,7 @@ try
    public void BorrarDatosE(){
        BufferedWriter bw = null;
        try {
-           bw = new BufferedWriter(new FileWriter("C:\\Users\\arman\\OneDrive\\Escritorio\\Server\\src\\socket\\DatosE.txt"));
+           bw = new BufferedWriter(new FileWriter("spaCEinvaders\\socket\\DatosE.txt"));
            bw.write("");
            bw.close();
        } catch (IOException ex) {

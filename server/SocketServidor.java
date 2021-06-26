@@ -3,13 +3,12 @@ package server;
 
 import java.net.*;
 import java.io.*;
-import java.util.Vector;
 import java.util.regex.Pattern;
 import socket.DatoSocket;
 
 /**
- * Clase principal que instancia un socket servidor, acepta una conexión
- * de un cliente y le envía un entero y una cadena de caracteres.
+ * Clase principal que instancia un socket servidor, acepta una conexiï¿½n
+ * de un cliente y le envï¿½a un entero y una cadena de caracteres.
  */
 public class SocketServidor
 {    
@@ -27,125 +26,128 @@ public class SocketServidor
        nivel.CreateNewLvl();
        DSocket.BorrarDatosE();
 
-       
-       
-       /**
-        * Acá el servidor recorre todos los aliens asignandoles cada posición que tienen en el cliente
-        */
-       
-       for(java.lang.Integer i=0; i<5; i++){
-            for(java.lang.Integer j=0; j<8; j++){
-                if(i==0){
-                    nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
-                    if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
-                        if(nivel.getAlienVida(i, j) == 1){
-                            nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
-                            nivel.KillAlien(i, j);
-                        }
-                    }
-                }
-                if(i==1 || i==2){
-                    nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
-                    if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
-                        if(nivel.getAlienVida(i, j) == 1){
-                            nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
-                            nivel.KillAlien(i, j);
-                        }
-                    }
-                }
-                if(3 <= i){
-                    nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
-                    if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
-                        if(nivel.getAlienVida(i, j) == 1){
-                            nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
-                            nivel.KillAlien(i, j);
-                        }
-                    }
-                }
-                indice += 4;
-            }
-        }
-       
-        nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje());
+       java.lang.Boolean ejecucion = true;
+       while(ejecucion == true){
         
-        java.lang.Boolean parada = true;
-        java.lang.Integer IndiceAux = 0;
-        while(parada == true){
+        /**
+            * Acï¿½ el servidor recorre todos los aliens asignandoles cada posiciï¿½n que tienen en el cliente
+            */
+        
+        for(java.lang.Integer i=0; i<5; i++){
+                for(java.lang.Integer j=0; j<8; j++){
+                    if(i==0){
+                        nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
+                        if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
+                            if(nivel.getAlienVida(i, j) == 1){
+                                nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
+                                nivel.KillAlien(i, j);
+                            }
+                        }
+                    }
+                    if(i==1 || i==2){
+                        nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
+                        if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
+                            if(nivel.getAlienVida(i, j) == 1){
+                                nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
+                                nivel.KillAlien(i, j);
+                            }
+                        }
+                    }
+                    if(3 <= i){
+                        nivel.UpdateAliens(i, j, Integer.parseInt(Datos[indice]), Integer.parseInt(Datos[indice+2]));
+                        if(Integer.parseInt(Datos[indice]) == -1 && Integer.parseInt(Datos[indice+2]) == -1){
+                            if(nivel.getAlienVida(i, j) == 1){
+                                nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje()+nivel.getAlientoPuntosMuerte(i, j));
+                                nivel.KillAlien(i, j);
+                            }
+                        }
+                    }
+                    indice += 4;
+                }
+            }
+        
+            nivel.UpdatePlayer(Integer.parseInt(Datos[3]), Integer.parseInt(Datos[1]), nivel.getPPuntaje());
+            
+            java.lang.Boolean parada = true;
+            java.lang.Integer IndiceAux = 0;
+            while(parada == true){
+                IndiceAux++;
+                if(Datos[IndiceAux].equals("HP:")){
+                    parada = false;
+                }
+                
+            }
             IndiceAux++;
-            if(Datos[IndiceAux].equals("HP:")){
-                parada = false;
+            
+            for(java.lang.Integer i=0; i<4; i++){
+                nivel.setBunkers(i, Integer.parseInt(Datos[IndiceAux]));
+                IndiceAux+=2;
             }
             
-        }
-        IndiceAux++;
+            for(java.lang.Integer i=0; i<4; i++){
+                System.out.println("Vida de los bunkers " + String.valueOf(nivel.getBunkerHp(i)));
+            }
+            
+            
+            
         
-        for(java.lang.Integer i=0; i<4; i++){
-            nivel.setBunkers(i, Integer.parseInt(Datos[IndiceAux]));
-            IndiceAux+=2;
-        }
+        /**
+            * Este for es para visualizar si se asigna la posiciï¿½n a los aliens 
+            * se puede borrar si quiere
+            */
         
-        for(java.lang.Integer i=0; i<4; i++){
-            System.out.println("Vida de los bunkers " + String.valueOf(nivel.getBunkerHp(i)));
-        }
-        
-        
-        
-       
-       /**
-        * Este for es para visualizar si se asigna la posición a los aliens 
-        * se puede borrar si quiere
-        */
-       
-       for(java.lang.Integer i=0; i<5; i++){
-            for(java.lang.Integer j=0; j<8; j++){
-                if(i==0){
-                    System.out.println("Alien en la posición: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
-                    
-                }
-                if(i==1 || i==2){
-                    System.out.println("Alien en la posición: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+        for(java.lang.Integer i=0; i<5; i++){
+                for(java.lang.Integer j=0; j<8; j++){
+                    if(i==0){
+                        System.out.println("Alien en la posiciï¿½n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                        
+                    }
+                    if(i==1 || i==2){
+                        System.out.println("Alien en la posiciï¿½n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
-                }
-                if(3 <= i){
-                    System.out.println("Alien en la posición: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                    }
+                    if(3 <= i){
+                        System.out.println("Alien en la posiciï¿½n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
+                    }
                 }
             }
-        }
-       
-       System.out.println("Posicion x del jugador: " + String.valueOf(nivel.getPlayerposX()) + " vida del jugador: "+ String.valueOf(nivel.getPlayerHp())+ " puntaje del jugador: "+ String.valueOf(nivel.getPPuntaje()));
-       
-       
-       //De aquí en adelante se escribe los datos contenidos por el servidor al txt de datoE
-       
-       DSocket.escribirTXTEnviar("JPosx: " + String.valueOf(nivel.getPlayerposX()) + " " + "JHP: " + String.valueOf(nivel.getPlayerHp()) + " Score: "+ String.valueOf(nivel.getPPuntaje()));
-       
-       for(java.lang.Integer i=0; i<5; i++){
-            for(java.lang.Integer j=0; j<8; j++){
-                if(i==0){
-                    DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
-                }
-                if(i==1 || i==2){
-                    DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
+        
+        System.out.println("Posicion x del jugador: " + String.valueOf(nivel.getPlayerposX()) + " vida del jugador: "+ String.valueOf(nivel.getPlayerHp())+ " puntaje del jugador: "+ String.valueOf(nivel.getPPuntaje()));
+        
+        
+        //De aquï¿½ en adelante se escribe los datos contenidos por el servidor al txt de datoE
+        
+        DSocket.escribirTXTEnviar("JPosx: " + String.valueOf(nivel.getPlayerposX()) + " " + "JHP: " + String.valueOf(nivel.getPlayerHp()) + " Score: "+ String.valueOf(nivel.getPPuntaje()));
+        
+        for(java.lang.Integer i=0; i<5; i++){
+                for(java.lang.Integer j=0; j<8; j++){
+                    if(i==0){
+                        DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                    }
+                    if(i==1 || i==2){
+                        DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
-                }
-                if(3 <= i){
-                    DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
+                    }
+                    if(3 <= i){
+                        DSocket.escribirTXTEnviar("PosX: " + String.valueOf(nivel.getAlienPosX(i, j)) + " PosY: " + String.valueOf(nivel.getAlienPosY(i, j)));
 
+                    }
                 }
             }
-        }
-       
-       for(java.lang.Integer i=0; i<4; i++){
-            DSocket.escribirTXTEnviar("HP: " + String.valueOf(nivel.getBunkerHp(i)));
-        }
-       
-       DSocket.escribirTXTEnviar(DSocket.leerDatosBalas());
-       
+        
+        for(java.lang.Integer i=0; i<4; i++){
+                DSocket.escribirTXTEnviar("HP: " + String.valueOf(nivel.getBunkerHp(i)));
+            }
+        
+        DSocket.escribirTXTEnviar(DSocket.leerDatosBalas());
+        
 
-       
-       
-       
+        if(nivel.getPlayerposX()==-1){
+            ejecucion = false;
+        }
+
+    }  
     }
     
      /**
@@ -155,22 +157,22 @@ public class SocketServidor
     {
         try
         {
-            // Se acepata una conexión con un cliente. Esta llamada se queda
+            // Se acepata una conexiï¿½n con un cliente. Esta llamada se queda
             // bloqueada hasta que se arranque el cliente.
             try ( // Se crea un socket servidor atendiendo a un determinado puerto.
-            // Por ejemplo, el 25557.
+            // Por ejemplo, el 25556.
                     ServerSocket socket = new ServerSocket (25556)) {
-                // Se acepata una conexión con un cliente. Esta llamada se queda
+                // Se acepata una conexiï¿½n con un cliente. Esta llamada se queda
                 // bloqueada hasta que se arranque el cliente.
                 System.out.println ("Esperando cliente");
                 try (Socket cliente = socket.accept()) {
                     System.out.println ("Conectado con cliente de " + cliente.getInetAddress());
                     
-                    // Se hace que el cierre del socket sea "gracioso". Esta llamada sólo
-                    // es necesaria si cerramos el socket inmediatamente después de
+                    // Se hace que el cierre del socket sea "gracioso". Esta llamada sï¿½lo
+                    // es necesaria si cerramos el socket inmediatamente despuï¿½s de
                     // enviar los datos (como en este caso).
                     // setSoLinger() a true hace que el cierre del socket espere a que
-                    // el cliente lea los datos, hasta un máximo de 10 segundos de espera.
+                    // el cliente lea los datos, hasta un mï¿½ximo de 10 segundos de espera.
                     // Si no ponemos esto, el socket se cierra inmediatamente y si el
                     // cliente no ha tenido tiempo de leerlos, los datos se pierden.
                     cliente.setSoLinger (true, 10);
@@ -194,7 +196,7 @@ public class SocketServidor
                     cliente.close();
                     
                     // Se cierra el socket encargado de aceptar clientes. Ya no
-                    // queremos más.
+                    // queremos mï¿½s.
                 }
             }
         }
