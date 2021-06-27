@@ -165,11 +165,11 @@ void playGame(){
             for (int i = 0; i < 5; ++i) {
                 for (int j = 0; j < 8; ++j){
                     itoa(aliens[i][j].posX, buffer, 10);
-                    strcat(cadena, "Posx: ");
+                    strcat(cadena, "PosX: ");
                     strcat(cadena, buffer);
 
                     itoa(aliens[i][j].posY, buffer, 10);
-                    strcat(cadena, " Posy: ");
+                    strcat(cadena, " PosY: ");
                     strcat(cadena, buffer);
                     strcat(cadena, "\n");
 

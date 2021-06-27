@@ -22,13 +22,13 @@ int main(int argc , char *argv[])
 {
 	
 	pthread_t hilo1;
-	//pthread_t hilo2;
+	pthread_t hilo2;
 
 	pthread_create(&hilo1,NULL,&sockets,NULL);
-	//pthread_create(&hilo2,NULL,&juego,NULL);
+	pthread_create(&hilo2,NULL,&juego,NULL);
 
 	pthread_join(hilo1,NULL);
-	//pthread_join(hilo2,NULL);
+	pthread_join(hilo2,NULL);
 
 }
 
@@ -48,8 +48,6 @@ static void* sockets(){
 	
     while (concec == TRUE)
 	{
-		concec = TRUE;
-		
 		printf("\nInitialising Winsock...");
 		if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
 		{
@@ -89,7 +87,7 @@ static void* sockets(){
 		if((recv_size = recv(s , server_reply , sizeof(server_reply) , 0)) == SOCKET_ERROR)
 		{
 			puts("recv failed");
-			concec = FALSE;
+			//concec = FALSE;
 		}
 		
 		puts("Reply received\n");
@@ -101,11 +99,9 @@ static void* sockets(){
 		if( send(s , leerTXT(), strlen(leerTXT()) , 0) < 0)
 		{
 			puts("Send failed");
-			concec = FALSE;
 		}
 		puts("Data Send\n");
-		sleep(0.05);
-		concec = TRUE;
+		Sleep(0.05);
 
 	}
 }

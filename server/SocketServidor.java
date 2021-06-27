@@ -23,6 +23,7 @@ public class SocketServidor
         
         java.lang.Integer indice;
         nivel.CreateNewLvl();
+        DSocket.RellenarTXT();
 
 
         java.lang.Boolean ejecucion = true;

@@ -219,6 +219,85 @@ System.out.println("Error al leer");
             }
         }
     }
+
+    public void RellenarTXT(){
+        BorrarDatosR();
+        
+        try
+  {
+  //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
+      File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
+  
+  //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
+      FileWriter escribir = new FileWriter(archivo,true);
+      java.lang.String saludo = ("JPosx: 453 JHP: 3\n" +
+  "PosX: 32 PosY: 244\n" +
+  "PosX: 112 PosY: 244\n" +
+  "PosX: 192 PosY: 244\n" +
+  "PosX: 272 PosY: 244\n" +
+  "PosX: 352 PosY: 244\n" +
+  "PosX: 432 PosY: 244\n" +
+  "PosX: 512 PosY: 244\n" +
+  "PosX: 592 PosY: 244\n" +
+  "PosX: 32 PosY: 294\n" +
+  "PosX: 3 PosY: 95\n" +
+  "PosX: 7 PosY: 63\n" +
+  "PosX: 272 PosY: 294\n" +
+  "PosX: 8 PosY: 127\n" +
+  "PosX: 432 PosY: 294\n" +
+  "PosX: 512 PosY: 294\n" +
+  "PosX: 592 PosY: 294\n" +
+  "PosX: 32 PosY: 344\n" +
+  "PosX: 112 PosY: 344\n" +
+  "PosX: 9 PosY: 63\n" +
+  "PosX: 45 PosY: 95\n" +
+  "PosX: 67 PosY: 191\n" +
+  "PosX: 432 PosY: 344\n" +
+  "PosX: 512 PosY: 344\n" +
+  "PosX: 592 PosY: 344\n" +
+  "PosX: 32 PosY: 394\n" +
+  "PosX: 6 PosY: 63\n" +
+  "PosX: 4 PosY: 159\n" +
+  "PosX: 87 PosY: 95\n" +
+  "PosX: 3 PosY: 63\n" +
+  "PosX: 12 PosY: 127\n" +
+  "PosX: 512 PosY: 394\n" +
+  "PosX: 592 PosY: 394\n" +
+  "PosX: 32 PosY: 444\n" +
+  "PosX: 1 PosY: 63\n" +
+  "PosX: 1 PosY: 191\n" +
+  "PosX: 1 PosY: 191\n" +
+  "PosX: 1 PosY: 159\n" +
+  "PosX: 1 PosY: 127\n" +
+  "PosX: 1 PosY: 159\n" +
+  "PosX: 1 PosY: 127\n" +
+  "HP: 3\n" +
+  "HP: 3\n" +
+  "HP: 3\n" +
+  "HP: 3\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "ABalaPosx: -1 ABalaPosy: -1\n" +
+  "BalaPosx: -1 BalaPosy: -1\n" +
+  "BalaPosx: -1 BalaPosy: -1\n" +
+  "BalaPosx: -1 BalaPosy: -1");
+  //Escribimos en el archivo con el metodo write
+      escribir.write(saludo);
+  
+  //Cerramos la conexion
+      escribir.close();
+  }catch (Exception e)
+          {
+              e.printStackTrace();
+          }
+    }
   
   
 }
