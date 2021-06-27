@@ -195,8 +195,6 @@ void playGame(){
                 strcat(cadena, "\n");
             }
 
-            strcat(cadena, "Balas jugador\n");
-
             for (int j = 0; j < 3; ++j){
                 itoa(bullets[j].posX, buffer, 10);
                 strcat(cadena, "BalaPosx: ");
@@ -579,7 +577,7 @@ void handleMainMenu(Sound* uiFx) {
 */
 void initGame() {
 
-    system("clienteC.exe");
+    //system("clienteC.exe");
 
     player.HP = 3;
     player.posX = SCREEN_WIDTH / 2 - 22;
@@ -623,7 +621,7 @@ void leerTXTObserver(){
 	int i= 0;
     char *token;
 	
-	archivo = fopen("DatoE.txt","r");
+	archivo = fopen("DatoR.txt","r");
 	if (archivo == NULL)
     {
         printf("\nError de apertura del archivo. \n\n");
@@ -668,7 +666,7 @@ void leerTXTObserver(){
                 enemiesBullets[i].posY = atoi(token);
             }
             //Linea para saltar la linea que indica el inicio de las balas del jugador
-            fgets(linea, 32,(FILE*) archivo);
+            //fgets(linea, 32,(FILE*) archivo);
             for(int i = 0; i<3;i++){
                 fgets(linea, 32,(FILE*) archivo);
                 token = strtok(linea, " ");
@@ -688,7 +686,7 @@ void leerTXTObserver(){
 void escribirTXT(char cadena[]){
 	FILE *fp;
     
-    fp = fopen ( "DatoR.txt", "w" ); //parámetro para escritura al final y para file tipo texto
+    fp = fopen ( "DatoE.txt", "w" ); //parámetro para escritura al final y para file tipo texto
  	
  	fwrite(cadena, sizeof(char), strlen(cadena), fp );
  	

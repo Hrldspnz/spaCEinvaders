@@ -20,14 +20,16 @@ public class SocketServidor
         Nivel nivel = new Nivel();
         DatoSocket DSocket = new DatoSocket();
         String[] Datos;
-        Datos = DSocket.leerTXTRecibido().split(" ");
+        
         java.lang.Integer indice;
         nivel.CreateNewLvl();
-        DSocket.BorrarDatosE();
+
 
         java.lang.Boolean ejecucion = true;
         while(ejecucion == true){
         indice=5;
+        DSocket.BorrarDatosE();
+        Datos = DSocket.leerTXTRecibido().split(" ");
         //socket.SocketServidor();
         /**
             * Ac? el servidor recorre todos los aliens asignandoles cada posici?n que tienen en el cliente
@@ -116,7 +118,7 @@ public class SocketServidor
         System.out.println("Posicion x del jugador: " + String.valueOf(nivel.getPlayerposX()) + " vida del jugador: "+ String.valueOf(nivel.getPlayerHp())+ " puntaje del jugador: "+ String.valueOf(nivel.getPPuntaje()));
         
         
-        //De aqu? en adelante se escribe los datos contenidos por el servidor al txt de datoE
+        //De aqu? en adelante se escribe los datos contenidos por el servidor al txt de datoE  
         
         DSocket.escribirTXTEnviar("JPosx: " + String.valueOf(nivel.getPlayerposX()) + " " + "JHP: " + String.valueOf(nivel.getPlayerHp()) + " Score: "+ String.valueOf(nivel.getPPuntaje()));
         
@@ -146,6 +148,9 @@ public class SocketServidor
         if(nivel.getPlayerposX()==-1){
             ejecucion = false;
         }
+
+        DSocket.BorrarDatosR();
+        socket.SocketServidor();
 
     }  
         
@@ -193,8 +198,12 @@ public class SocketServidor
      
                     BufferedReader in;
                     in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));    
-                    java.lang.String info = in.readLine().toString();
-                    Dato.escribirTXT(info);
+                    java.lang.String info;
+                    for(java.lang.Integer i=0; i<58; i++){
+                        info = in.readLine();
+                        Dato.escribirTXT(info + "\n");
+                    }
+                   
      
                     cliente.close();
                     
