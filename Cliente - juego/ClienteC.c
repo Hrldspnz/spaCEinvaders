@@ -5,7 +5,6 @@
 #include <string.h>
 #include<winsock2.h>
 
-#define PORT 25556
 
 #pragma comment(lib,"ws2_32.lib") //Winsock Library
 
@@ -13,6 +12,7 @@ char * leerTXT();
 void escribirTXT(char cadena[]);
 static void* sockets();
 static void* juego();
+int port[4] = {25556, 25557, 25558, 25559};
 
 
 /**
@@ -47,76 +47,80 @@ static void* sockets(){
 	FILE *archivo;
     char linea[32];
     char *token;
-
+	int indice = 0;
 	
     while (concec == TRUE)
 	{
-		archivo = fopen("DatoE.txt","r");
-		if (archivo == NULL){
-        	printf("\nError de apertura del archivo. \n\n");
-		}
-		else{
-			fgets(linea, 32,(FILE*) archivo);
-			token = strtok(linea, " ");
-			token = strtok(NULL, " ");
-			if(token != NULL){
-				printf("\nInitialising Winsock...");
-				if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
-				{
-					printf("Failed. Error Code : %d",WSAGetLastError());
-					concec = FALSE;
-
-				}
-				
-				printf("Initialised.\n");
-
-
-				//Crea el socket
-				if((s = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
-				{
-					printf("Could not create socket : %d" , WSAGetLastError());
-					concec = FALSE;
-				}
-
-				Host = gethostbyname ("localhost");
-
-				printf("Socket created.\n");
-				
-				
-				server.sin_addr.s_addr = ((struct in_addr *)(Host->h_addr))->s_addr;
-				server.sin_family = AF_INET;
-				server.sin_port = htons(PORT);
-
-				//Conecta con el servidor
-				if (connect(s , (struct sockaddr *)&server , sizeof(server)) == -1)
-				{
-					puts("connect error");
-					concec = FALSE;
-				}
-				
-				puts("Connected");
-				//Recibe la respuesta del servidor
-				if((recv_size = recv(s , server_reply , sizeof(server_reply) , 0)) == SOCKET_ERROR)
-				{
-					puts("recv failed");
-					//concec = FALSE;
-				}
-				
-				puts("Reply received\n");
-				//Adiciona un NULL al final del string
-				puts(server_reply);
-				escribirTXT(server_reply);
-				
-				//Envio de datos
-				if( send(s , leerTXT(), strlen(leerTXT()) , 0) < 0)
-				{
-					puts("Send failed");
-				}
-				puts("Data Send\n");
-				Sleep(0.05);
+		
+			archivo = fopen("DatoE.txt","r");
+			if (archivo == NULL){
+				printf("\nError de apertura del archivo. \n\n");
 			}
-		}
-		fclose(archivo);
+			else{
+				fgets(linea, 32,(FILE*) archivo);
+				token = strtok(linea, " ");
+				token = strtok(NULL, " ");
+				if(token != NULL){
+					printf("\nInitialising Winsock...");
+					if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
+					{
+						printf("Failed. Error Code : %d",WSAGetLastError());
+						concec = FALSE;
+
+					}
+					
+					printf("Initialised.\n");
+
+
+					//Crea el socket
+					if((s = socket(AF_INET , SOCK_STREAM , 0 )) == INVALID_SOCKET)
+					{
+						printf("Could not create socket : %d" , WSAGetLastError());
+						concec = FALSE;
+					}
+
+					Host = gethostbyname ("localhost");
+
+					printf("Socket created.\n");
+					
+					
+					server.sin_addr.s_addr = ((struct in_addr *)(Host->h_addr))->s_addr;
+					server.sin_family = AF_INET;
+					server.sin_port = htons(port[indice]);
+
+					//Conecta con el servidor
+					if (connect(s , (struct sockaddr *)&server , sizeof(server)) == -1)
+					{
+						puts("connect error");
+						
+						concec = FALSE;
+						
+					}
+					
+					puts("Connected");
+					//Recibe la respuesta del servidor
+					if((recv_size = recv(s , server_reply , sizeof(server_reply) , 0)) == SOCKET_ERROR)
+					{
+						puts("recv failed");
+						//concec = FALSE;
+					}
+					
+					puts("Reply received\n");
+					//Adiciona un NULL al final del string
+					puts(server_reply);
+					escribirTXT(server_reply);
+					
+					//Envio de datos
+					if( send(s , leerTXT(), strlen(leerTXT()) , 0) < 0)
+					{
+						puts("Send failed");
+					}
+					puts("Data Send\n");
+					Sleep(0.05);
+				}
+			}
+			fclose(archivo);
+		
 	}
 }
 

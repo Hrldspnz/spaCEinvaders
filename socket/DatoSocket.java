@@ -1,7 +1,5 @@
 package socket;
 
-
-
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,16 +8,17 @@ import java.util.logging.Logger;
  * Dato para enviar por el socket. Sus atributos son simples y una Clase Atributo
  */
 public class DatoSocket implements Serializable
- {
+{
+    int numeroCliente;
    /**
    * Constructor. Guarda la cadena en el atributo d y calcula su longitud para guardarla
    * en el atricuto c.
    */
-   public DatoSocket ()
-   {
-      // Si la cadena no es null, se guarda la cadena y su longitud 
+    public DatoSocket (int cliente)
+    {
+      numeroCliente = cliente;
      
-   }
+    }
     
   
      
@@ -28,7 +27,7 @@ public class DatoSocket implements Serializable
 try
 {
 //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-    File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
+    File archivo=new File("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt");
 
 //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
     FileWriter escribir = new FileWriter(archivo,true);
@@ -60,7 +59,7 @@ try
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt");
+   lector=new FileReader("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosE"+numeroCliente+".txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -99,7 +98,7 @@ System.out.println("Error al leer");
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
+   lector=new FileReader("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -132,7 +131,7 @@ System.out.println("Error al leer");
 try
 {
 //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-    File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt");
+    File archivo=new File("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosE"+numeroCliente+".txt");
 
 //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
     FileWriter escribir = new FileWriter(archivo,true);
@@ -155,7 +154,7 @@ try
    public void BorrarDatosE(){
        BufferedWriter bw = null;
        try {
-           bw = new BufferedWriter(new FileWriter("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosE.txt"));
+           bw = new BufferedWriter(new FileWriter("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosE"+numeroCliente+".txt"));
            bw.write("");
            bw.close();
        } catch (IOException ex) {
@@ -180,7 +179,7 @@ try
 try
 {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-   lector=new FileReader("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
+   lector=new FileReader("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt");
 
 //El contenido de lector se guarda en un BufferedReader
    contenido=new BufferedReader(lector);
@@ -206,7 +205,7 @@ System.out.println("Error al leer");
      public void BorrarDatosR(){
         BufferedWriter bw = null;
         try {
-            bw = new BufferedWriter(new FileWriter("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt"));
+            bw = new BufferedWriter(new FileWriter("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt"));
             bw.write("");
             bw.close();
         } catch (IOException ex) {
@@ -226,7 +225,7 @@ System.out.println("Error al leer");
         try
   {
   //Crear un objeto File se encarga de crear o abrir acceso a un archivo que se especifica en su constructor
-      File archivo=new File("C:\\Users\\hrlds\\Documents\\GitHub\\spaCEinvaders\\socket\\DatosR.txt");
+      File archivo=new File("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt");
   
   //Crear objeto FileWriter que sera el que nos ayude a escribir sobre archivo
       FileWriter escribir = new FileWriter(archivo,true);
