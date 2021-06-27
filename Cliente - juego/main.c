@@ -132,6 +132,8 @@ void observeGame(){
     if(player.HP <= 0){
         isObserving = 0;
     }
+    escribirTXT("Observer observando");
+
 }
 
 void playGame(){
@@ -628,7 +630,7 @@ void leerTXTObserver(){
     }
     else
     {
-        fgets(linea, 32,(FILE*) archivo);
+        fgets(linea, 35,(FILE*) archivo);
         token = strtok(linea, " ");
         token = strtok(NULL, " ");
         if(token != NULL){
@@ -636,6 +638,8 @@ void leerTXTObserver(){
             token = strtok(NULL, " ");
             token = strtok(NULL, " ");
             player.HP = atoi(token);
+            token = strtok(NULL, " ");
+            token = strtok(NULL, " ");
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 8; j++)

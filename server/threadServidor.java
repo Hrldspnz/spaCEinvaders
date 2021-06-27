@@ -21,7 +21,18 @@ public class threadServidor implements Runnable{
         while(ejecucion == true){
             indice=5;
             DSocket.BorrarDatosE();
+            
             Datos = DSocket.leerTXTRecibido().split(" ");
+            try{
+                //System.out.println(Datos[0]);
+                if(Datos[0].equals("Observer") ){
+                    System.out.println("Observer Conectado"); 
+                    Datos = DSocket.leerTXTRecibido(0).split(" ");
+                }
+            }catch(Exception e){
+                System.out.println(e); 
+                System.out.println("No observa, juega"); 
+            }
             //socket.SocketServidor();
             /**
                 * Ac? el servidor recorre todos los aliens asignandoles cada posici?n que tienen en el cliente
@@ -78,9 +89,9 @@ public class threadServidor implements Runnable{
                         IndiceAux+=2;
                     }
                     
-                    for(java.lang.Integer i=0; i<4; i++){
+                    /*for(java.lang.Integer i=0; i<4; i++){
                         System.out.println("Vida de los bunkers " + String.valueOf(nivel.getBunkerHp(i)));
-                    }
+                    }*/
                     
                     
                     
@@ -90,7 +101,7 @@ public class threadServidor implements Runnable{
                     * se puede borrar si quiere
                     */
                 
-                for(java.lang.Integer i=0; i<5; i++){
+                /*for(java.lang.Integer i=0; i<5; i++){
                         for(java.lang.Integer j=0; j<8; j++){
                             if(i==0){
                                 System.out.println("Alien en la posici?n: "+ i.toString()+ " " + j.toString()+" posx: " + String.valueOf(nivel.getAlienPosX(i, j))+" posy: " + String.valueOf(nivel.getAlienPosY(i, j)));
@@ -105,11 +116,11 @@ public class threadServidor implements Runnable{
 
                             }
                         }
-                    }
+                    }*/
                 
                 System.out.println("Posicion x del jugador: " + String.valueOf(nivel.getPlayerposX()) + " vida del jugador: "+ String.valueOf(nivel.getPlayerHp())+ " puntaje del jugador: "+ String.valueOf(nivel.getPPuntaje()));
             }catch(Exception ex) {
-                System.out.println("Formato incorrecto de TXT");    
+                System.out.println("Formato incorrecto de TXT2");    
             } 
             
             //De aqu? en adelante se escribe los datos contenidos por el servidor al txt de datoE  
@@ -145,6 +156,11 @@ public class threadServidor implements Runnable{
 
             DSocket.BorrarDatosR();
             socket.SocketServidor(Integer.parseInt(Thread.currentThread().getName()));
+            try{
+                Thread.sleep(100);
+            }catch(InterruptedException e){
+                
+            }
 
     }  
     }

@@ -66,7 +66,7 @@ public class SocketServidor
                     BufferedWriter out;
                     out = new BufferedWriter (new OutputStreamWriter(cliente.getOutputStream()));
                     
-                    System.out.println(Dato.leerTXT());
+                    //System.out.println(Dato.leerTXT());
                     
                     out.write(Dato.leerTXT()+"\0");
                     out.newLine(); 

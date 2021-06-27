@@ -126,7 +126,7 @@ System.out.println("Error al leer");
        return resultado;
 
 }
-   public void escribirTXTEnviar(java.lang.String saludo){
+public void escribirTXTEnviar(java.lang.String saludo){
 
 try
 {
@@ -169,7 +169,7 @@ try
    }
    
         
-  public java.lang.String leerTXTRecibido(){
+public java.lang.String leerTXTRecibido(){
          
     java.lang.String texto="";
     FileReader lector;
@@ -200,9 +200,44 @@ System.out.println("Error al leer");
     
       
     return resultado;
-     }
+}
+
+public java.lang.String leerTXTRecibido(int numeroArchivo){
+    
+    System.out.println("Archivo numero: "+numeroArchivo);
+    java.lang.String texto="";
+    FileReader lector;
+    BufferedReader contenido;
+    java.lang.String resultado = "";
+
+try
+{
+//Creamos un archivo FileReader que obtiene lo que tenga el archivo
+   lector=new FileReader("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroArchivo+".txt");
+
+//El contenido de lector se guarda en un BufferedReader
+   contenido=new BufferedReader(lector);
+
+//Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
+    while((texto=contenido.readLine())!= null)
+{
+    resultado = resultado + texto + " ";
+}
+}
+
+//Si se causa un error al leer cae aqui
+    catch(Exception e)
+{
+System.out.println("Error al leer");
+}
+
+    
+      
+    return resultado;
+}
   
      public void BorrarDatosR(){
+         System.out.println("Borrando: "+numeroCliente);
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter("C:\\Users\\Keons\\Documents\\TEC\\CE\\Lenguajes\\spaCEinvaders\\socket\\DatosR"+numeroCliente+".txt"));

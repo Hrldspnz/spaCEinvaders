@@ -10,6 +10,7 @@
 
 char * leerTXT();
 void escribirTXT(char cadena[]);
+void escribirTXTInicial();
 static void* sockets();
 static void* juego();
 int port[4] = {25556, 25557, 25558, 25559};
@@ -49,6 +50,8 @@ static void* sockets(){
     char *token;
 	int indice = 0;
 	
+	printf("hola");
+	escribirTXTInicial();
     while (concec == TRUE)
 	{
 		
@@ -58,9 +61,9 @@ static void* sockets(){
 			}
 			else{
 				fgets(linea, 32,(FILE*) archivo);
-				token = strtok(linea, " ");
+				/*token = strtok(linea, " ");
 				token = strtok(NULL, " ");
-				if(token != NULL){
+				if(token != NULL){*/
 					printf("\nInitialising Winsock...");
 					if (WSAStartup(MAKEWORD(2,2),&wsa) != 0)
 					{
@@ -117,7 +120,7 @@ static void* sockets(){
 					}
 					puts("Data Send\n");
 					Sleep(0.05);
-				}
+				//}
 			}
 			fclose(archivo);
 		
@@ -156,7 +159,7 @@ char * leerTXT(){
         }
 
         fclose(archivo);
-
+		printf("datos observer %s",data);
 		data[i] = '\n';
 
 		return data;
@@ -170,6 +173,81 @@ void escribirTXT(char cadena[]){
 	FILE *fp;
  
  	fp = fopen ( "DatoR.txt", "w" ); //parámetro para escritura al final y para file tipo texto	
+
+ 	fputs(cadena,  fp);
+ 	
+ 	fclose ( fp );
+}
+/**
+ * Funcion que permite escribir en un archivo txt para almacenar los datos que provienen del servidor
+ * @param cadena Recibe como entrada la cadena de caracteres que se desea escribir en el archivo
+*/
+void escribirTXTInicial(){
+	FILE *fp;
+	
+	char cadena[1500] = "";
+	
+
+    strcat(cadena, "JPosx: 463 JHP: 3\n");
+    strcat(cadena, "PosX: 313 PosY: 52\n");
+	strcat(cadena, "PosX: 393 PosY: 52\n");
+	strcat(cadena, "PosX: 473 PosY: 52\n");
+	strcat(cadena, "PosX: 553 PosY: 52\n");
+	strcat(cadena, "PosX: 633 PosY: 52\n");
+	strcat(cadena, "PosX: 713 PosY: 52\n");
+	strcat(cadena, "PosX: 793 PosY: 52\n");
+	strcat(cadena, "PosX: 873 PosY: 52\n");
+	strcat(cadena, "PosX: 313 PosY: 102\n");
+	strcat(cadena, "PosX: 393 PosY: 102\n");
+	strcat(cadena, "PosX: 473 PosY: 102\n");
+	strcat(cadena, "PosX: 553 PosY: 102\n");
+	strcat(cadena, "PosX: 633 PosY: 102\n");
+	strcat(cadena, "PosX: 713 PosY: 102\n");
+	strcat(cadena, "PosX: 793 PosY: 102\n");
+	strcat(cadena, "PosX: 873 PosY: 102\n");
+	strcat(cadena, "PosX: 313 PosY: 152\n");
+	strcat(cadena, "PosX: 393 PosY: 152\n");
+	strcat(cadena, "PosX: 473 PosY: 152\n");
+	strcat(cadena, "PosX: 553 PosY: 152\n");
+	strcat(cadena, "PosX: 633 PosY: 152\n");
+	strcat(cadena, "PosX: 713 PosY: 152\n");
+	strcat(cadena, "PosX: 793 PosY: 152\n");
+	strcat(cadena, "PosX: 873 PosY: 152\n");
+	strcat(cadena, "PosX: 313 PosY: 202\n");
+	strcat(cadena, "PosX: 393 PosY: 202\n");
+	strcat(cadena, "PosX: 473 PosY: 202\n");
+	strcat(cadena, "PosX: 553 PosY: 202\n");
+	strcat(cadena, "PosX: 633 PosY: 202\n");
+	strcat(cadena, "PosX: 713 PosY: 202\n");
+	strcat(cadena, "PosX: 793 PosY: 202\n");
+	strcat(cadena, "PosX: 873 PosY: 202\n");
+	strcat(cadena, "PosX: 313 PosY: 252\n");
+	strcat(cadena, "PosX: 393 PosY: 252\n");
+	strcat(cadena, "PosX: -1 PosY: -1\n");
+	strcat(cadena, "PosX: 553 PosY: 252\n");
+	strcat(cadena, "PosX: -1 PosY: -1\n");
+	strcat(cadena, "PosX: 713 PosY: 252\n");
+	strcat(cadena, "PosX: 793 PosY: 252\n");
+	strcat(cadena, "PosX: 873 PosY: 252\n");
+	strcat(cadena, "HP: 3\n");
+	strcat(cadena, "HP: 1\n");
+	strcat(cadena, "HP: 3\n");
+	strcat(cadena, "HP: 1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "ABalaPosx: -1 ABalaPosy: -1\n");
+	strcat(cadena, "BalaPosx: -1 BalaPosy: -1\n");
+	strcat(cadena, "BalaPosx: -1 BalaPosy: -1\n");
+	strcat(cadena, "BalaPosx: -1 BalaPosy: -1\n");
+
+ 	fp = fopen ( "DatoE.txt", "w" ); //parámetro para escritura al final y para file tipo texto	
 
  	fputs(cadena,  fp);
  	
